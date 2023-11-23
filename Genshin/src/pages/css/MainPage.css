@@ -94,7 +94,7 @@ body {
   cursor: pointer;
 }
 .bannerContainerMainPage {
-  background: linear-gradient(90deg, #00d2ff 0%, #3a92d5 100%);
+  background: linear-gradient(90deg, #00b3ff 0%, #3a92d5 100%);
   width: 90%;
 }
 .arrowRightMainPage {
@@ -131,7 +131,7 @@ body {
 }
 .descriptionLeftSideContainerPage {
   font-size: 18px;
-  color: white;
+  color: var(--gray-color);
 }
 .rightSideBannerMainPage {
   flex: 6;

@@ -1,5 +1,6 @@
 import { FaUser, FaPlus, FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import Button from '@mui/material/Button'
+import './css/colors.css'
 import './css/MainPage.css'
 
 const MainPage = () => {
