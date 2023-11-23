@@ -1,0 +1,147 @@
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('fonts/Comfortaa.ttf');
+  font-weight: 1000;
+}
+@font-face {
+  font-family: 'RussoOne';
+  src: url('fonts/RussoOne.ttf');
+  font-weight: 1000;
+}
+body {
+  font-family: 'Comfortaa';
+}
+.headerMainPage {
+  width: 90%;
+  margin: auto;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.iconsMainPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconsMainPage div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: gray;
+  padding: 10px;
+  color: white;
+}
+.icon_addMainPage {
+  background: linear-gradient(90deg, #00c9ff 0%, #00c9ff 100%);
+}
+.buttonsMainPage {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  justify-content: center;
+  align-items: start;
+  padding-top: 2px;
+}
+.button_centerMainPage {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.activeMainPage {
+  height: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid black;
+}
+.login_buttonsMainPage {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.loginbutton_buttonsMainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+  border: 1px solid;
+  border-radius: 20px;
+}
+.signinbutton_buttonsMainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+  background: linear-gradient(90deg, #009bbd 0%, #3aa6d5 100%);
+  color: white;
+  border-radius: 20px;
+}
+.bannerMainPage {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.arrowLeftMainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  cursor: pointer;
+}
+.bannerContainerMainPage {
+  background: linear-gradient(90deg, #00d2ff 0%, #3a92d5 100%);
+  width: 90%;
+}
+.arrowRightMainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+
+  cursor: pointer;
+}
+.bannerContainerMainPage {
+  background-color: gray;
+  height: 200px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.leftSideBannerMainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding-left: 3em;
+  flex: 4;
+  height: 200px;
+}
+.headerLeftSideContainerPage {
+  font-size: 72px;
+  font-family: 'RussoOne';
+  color: white;
+}
+.descriptionLeftSideContainerPage {
+  font-size: 18px;
+  color: white;
+}
+.rightSideBannerMainPage {
+  flex: 6;
+  height: 200px;
+}
+.rightSideBannerMainPage img {
+  height: 300px;
+  position: absolute;
+  top: 34px;
+  right: 20px;
+  object-position: center center;
+  pointer-events: none;
+}
