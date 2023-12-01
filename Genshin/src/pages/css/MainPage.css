@@ -37,7 +37,7 @@ body {
   color: white;
 }
 .icon_addMainPage {
-  background: linear-gradient(90deg, #00c9ff 0%, #00c9ff 100%);
+  background: linear-gradient(45deg, var(--banner-color1) 0%, var(--banner-color2) 100%);
 }
 .buttonsMainPage {
   display: flex;
@@ -75,16 +75,17 @@ body {
   justify-content: center;
   align-items: center;
   padding: 5px 20px;
-  background: linear-gradient(90deg, #009bbd 0%, #3aa6d5 100%);
+  background: linear-gradient(45deg, var(--banner-color1) 0%, var(--banner-color2) 100%);
   color: white;
   border-radius: 20px;
 }
 .bannerMainPage {
-  padding-top: 40px;
+  padding-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  transition: 1s linear;
 }
 .arrowLeftMainPage {
   display: flex;
@@ -94,9 +95,11 @@ body {
   cursor: pointer;
 }
 .bannerContainerMainPage {
-  background: linear-gradient(90deg, #00b3ff 0%, #3a92d5 100%);
+  background: linear-gradient(90deg, var(--banner-color1) 0%, var(--banner-color2) 100%);
+  
   width: 90%;
 }
+
 .arrowRightMainPage {
   display: flex;
   justify-content: center;
@@ -124,6 +127,15 @@ body {
   flex: 4;
   height: 200px;
 }
+.LaylaleftSideBannerMainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding-left: 3em;
+  flex: 4;
+  height: 200px;
+}
 .headerLeftSideContainerPage {
   font-size: 72px;
   font-family: 'RussoOne';
@@ -136,12 +148,29 @@ body {
 .rightSideBannerMainPage {
   flex: 6;
   height: 200px;
+  
 }
-.rightSideBannerMainPage img {
+.imageInBannerMainPage img {
+
+  max-width: 500px;
+  max-height: 300px;
+}
+.imageInBannerMainPage
+{
+  border-radius: 20px;
+  bottom:80px;
+  right:-20px;
   height: 300px;
-  position: absolute;
-  top: 34px;
-  right: 20px;
-  object-position: center center;
+
+  position: relative;
+  overflow: hidden;
+
+  object-position: left center;
   pointer-events: none;
+}
+.imageInBannerMainPage img
+{
+  position: absolute;
+  right:-40px;
+  bottom: 0px;
 }
