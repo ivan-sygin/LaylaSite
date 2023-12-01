@@ -141,6 +141,7 @@ body {
   justify-content: center;
   align-items: start;
   padding-left: 3em;
+  overflow: hidden;
   flex: 4;
   height: 200px;
 }
@@ -185,17 +186,19 @@ body {
 .imageInBannerMainPage img {
   position: absolute;
   transition: all 1s linear;
-
+  user-select: none;
   right: -40px;
   bottom: 0px;
 }
 
 .FadeInImg {
   animation: openModal 0.4s ease-out forwards;
+  overflow: hidden;
 }
 
 .TextFadeIn {
   animation: fadeInText 0.4s ease-out forwards;
+  overflow: hidden;
 }
 
 @keyframes openModal {
