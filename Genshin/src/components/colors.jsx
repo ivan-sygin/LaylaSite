@@ -16,6 +16,7 @@ const themes = {
     },
     'Layla':
     {
+        "--primary-color": "black",
         "--banner-color1": "#00b3ff",
         "--banner-color2": "#3a92d5"
     },
