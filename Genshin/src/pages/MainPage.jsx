@@ -42,7 +42,7 @@ const MainPage = () => {
           <div className='button_centerMainPage'>Сообщение</div>
         </div>
         <div className='login_buttonsMainPage'>
-          <div className='loginbutton_buttonsMainPage'>Войти</div>
+          <div className='loginbutton_buttonsMainPage'>V IT</div>
           <div className='signinbutton_buttonsMainPage'>Регистрация</div>
         </div>
       </header>
