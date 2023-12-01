@@ -27,7 +27,7 @@ const MainPage = () => {
   },[])
   return (
     <>
-      <div className='headerMainPage'>
+      <header className='headerMainPage'>
         <div className='iconsMainPage'>
           <div className='iconMainPage icon_profileMainPage'>
             <FaUser />
@@ -45,7 +45,7 @@ const MainPage = () => {
           <div className='loginbutton_buttonsMainPage'>Войти</div>
           <div className='signinbutton_buttonsMainPage'>Регистрация</div>
         </div>
-      </div>
+      </header>
       <div className='bannerMainPage'>
         <div className='arrowLeftMainPage'  onClick={() => { setCharacter("Layla"); ChangeColor('Layla'); }}>
           <FaArrowLeft />
