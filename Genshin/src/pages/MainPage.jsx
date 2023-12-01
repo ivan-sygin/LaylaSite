@@ -3,28 +3,56 @@ import Button from '@mui/material/Button'
 import './css/colors.css'
 import './css/MainPage.css'
 import { useState } from 'react'
-import {ChangeColor} from '../components/colors'
+import { ChangeColor } from '../components/colors'
 import { useEffect } from 'react'
 
-class Layla{
-  name = "Лайла"
-  description = "Лайла — Крио саппорт, предоставляет отряду защиту."
-  img="https://genshinpedia.ru/wp-content/uploads/2023/04/1680785407_e67792d0779f602044795c14c525dc57-2048x1199.png"
-  color="Layla"
-}
-class Diluc{
-  name = "Дилюк"
-  description = "Дилюк — Пиро дамагер, предоставляет отряду урон."
-  img="https://i.playground.ru/i/pix/3089903/image.jpg"
-  color="Diluc"
-}
-
 const MainPage = () => {
-  const [character, setCharacter] = useState("Layla");
-  const characters = {"Layla":new Layla(),'Diluc':new Diluc()}
-  useEffect(()=>{
-    ChangeColor('Layla');
-  },[])
+  const [character, setCharacter] = useState('Layla')
+  const characters = {
+    Layla: {
+      name: 'Лайла',
+      description: 'Лайла — Крио саппорт, предоставляет отряду защиту.',
+      img: 'https://genshinpedia.ru/wp-content/uploads/2023/04/1680785407_e67792d0779f602044795c14c525dc57-2048x1199.png',
+      color: 'Layla'
+    },
+    Diluc: {
+      name: 'Дилюк',
+      description: 'Дилюк — Пиро дамагер, предоставляет отряду урон.',
+      img: 'https://i.playground.ru/i/pix/3089903/image.jpg',
+      color: 'Diluc'
+    },
+    Xiao: {
+      name: 'Сяо',
+      description: 'Сяо — Анемо дамагер, предоставляет отряду анемо-урон.',
+      img: 'https://images5.alphacoders.com/110/thumb-1920-1109816.png',
+      color: 'Xiao'
+    }
+  }
+  const SetCharacter = (character) => {
+    setCharacter(character)
+    ChangeColor(character)
+  }
+  const changeCharacter = (direction) => {
+    let allKeys = Object.keys(characters)
+    let currentCharacterIndex = allKeys.indexOf(character)
+    console.log(currentCharacterIndex)
+    if (direction == 1)
+      if (allKeys.length - 1 == currentCharacterIndex) {
+        SetCharacter(allKeys[0])
+      } else {
+        SetCharacter(allKeys[currentCharacterIndex + 1])
+      }
+    else {
+      if (0 == currentCharacterIndex) {
+        SetCharacter(allKeys[allKeys.length - 1])
+      } else {
+        SetCharacter(allKeys[currentCharacterIndex - 1])
+      }
+    }
+  }
+  useEffect(() => {
+    ChangeColor('Layla')
+  }, [])
   return (
     <>
       <header className='headerMainPage'>
@@ -47,32 +75,44 @@ const MainPage = () => {
         </div>
       </header>
       <div className='bannerMainPage'>
-        <div className='arrowLeftMainPage'  onClick={() => { setCharacter("Layla"); ChangeColor('Layla'); }}>
+        <div
+          className='arrowLeftMainPage'
+          onClick={() => {
+            changeCharacter(-1)
+          }}
+        >
           <FaArrowLeft />
         </div>
-        <div className={'bannerContainerMainPage '+character+"bannerContainerMainPage"}>
+        <div
+          className={
+            'bannerContainerMainPage ' + character + 'bannerContainerMainPage'
+          }
+        >
           <div className='leftSideBannerMainPage '>
-            <div className='headerLeftSideContainerPage'>{characters[character].name}</div>
+            <div className='headerLeftSideContainerPage'>
+              {characters[character].name}
+            </div>
             <div className='descriptionLeftSideContainerPage'>
               {characters[character].description}
             </div>
           </div>
           <div className='rightSideBannerMainPage'>
-            <div className="imageInBannerMainPage">
-              <img
-                src={characters[character].img}
-                alt=''
-              />
+            <div className='imageInBannerMainPage'>
+              <img src={characters[character].img} alt='' />
             </div>
           </div>
         </div>
-        <div className='arrowRightMainPage' onClick={() => { setCharacter("Diluc"); ChangeColor('Diluc'); }}>
+        <div
+          className='arrowRightMainPage'
+          onClick={() => {
+            changeCharacter(1)
+          }}
+        >
           <FaArrowRight />
         </div>
       </div>
-
     </>
   )
 }
 
-export default MainPage;
+export default MainPage
