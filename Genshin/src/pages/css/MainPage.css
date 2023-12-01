@@ -184,6 +184,35 @@ body {
 }
 .imageInBannerMainPage img {
   position: absolute;
+  transition: all 1s linear;
+
   right: -40px;
   bottom: 0px;
+}
+
+.FadeInImg {
+  animation: openModal 0.4s ease-out forwards;
+}
+
+.TextFadeIn {
+  animation: fadeInText 0.4s ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInText {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

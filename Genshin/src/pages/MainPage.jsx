@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 
 const MainPage = () => {
   const [character, setCharacter] = useState('Layla')
+  const [fade, setFade] = useState(true)
   const characters = {
     Layla: {
       name: 'Лайла',
@@ -31,6 +32,7 @@ const MainPage = () => {
   const SetCharacter = (character) => {
     setCharacter(character)
     ChangeColor(character)
+    setFade(true)
   }
   const changeCharacter = (direction) => {
     let allKeys = Object.keys(characters)
@@ -89,16 +91,30 @@ const MainPage = () => {
           }
         >
           <div className='leftSideBannerMainPage '>
-            <div className='headerLeftSideContainerPage'>
+            <div
+              className={
+                'headerLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
+              }
+            >
               {characters[character].name}
             </div>
-            <div className='descriptionLeftSideContainerPage'>
+            <div
+              className={
+                'descriptionLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
+              }
+              onAnimationEnd={() => setFade(false)}
+            >
               {characters[character].description}
             </div>
           </div>
           <div className='rightSideBannerMainPage'>
             <div className='imageInBannerMainPage'>
-              <img src={characters[character].img} alt='' />
+              <img
+                src={characters[character].img}
+                alt=''
+                className={fade ? 'FadeInImg' : ''}
+                onAnimationEnd={() => setFade(false)}
+              />
             </div>
           </div>
         </div>
