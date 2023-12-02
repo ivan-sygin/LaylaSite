@@ -22,7 +22,7 @@ const MainPage = () => {
     Layla: {
       name: 'Лайла',
       description: 'Лайла — Крио саппорт, предоставляет отряду защиту.',
-      img: 'https://genshinpedia.ru/wp-content/uploads/2023/04/1680785407_e67792d0779f602044795c14c525dc57-2048x1199.png',
+      img: 'http://fileserver-bxwzgfn0.b4a.run/photos/5161603aead656cf94e8290fd89a5010b4f9fe91.png',
       color: 'Layla',
       art1: 'https://i.ytimg.com/vi/dGsOQSYhRyw/hqdefault.jpg',
       art2: 'https://cs14.pikabu.ru/post_img/2022/11/19/5/og_og_1668837778272571137.jpg',
