@@ -1,3 +1,11 @@
+:root {
+  --gradient: linear-gradient(
+    90deg,
+    var(--banner-color1) 0%,
+    var(--banner-color2) 100%
+  );
+}
+
 @font-face {
   font-family: 'Comfortaa';
   src: url('fonts/Comfortaa.ttf');
@@ -218,4 +226,153 @@ body {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+.bottomLayerMainPage {
+  width: 90%;
+  margin: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.firstSection {
+  display: flex;
+  flex: 30;
+  flex-direction: column;
+}
+.wrapperFirst {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ObjectsInFirstSection {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.ObjectsFirstSession img {
+  position: absolute;
+  display: block;
+  margin: auto;
+  height: 100%;
+  overflow: hidden;
+}
+.ObjectsFirstSession {
+  flex: 1;
+  border-radius: 35px;
+  color: white;
+  background: var(--gradient);
+  position: relative;
+  overflow: hidden;
+}
+.buttonShowMore {
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 35px;
+  background: var(--gradient);
+  color: white;
+}
+.ObjectsInSecondSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ObjectInSecondSection {
+  gap: 10px;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  border-radius: 35px;
+  color: white;
+  background: var(--gradient);
+}
+.secondSection {
+  flex: 20;
+}
+.thirdSection {
+  flex: 15;
+}
+.ObjectInThirdSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 35px;
+  color: white;
+  background: var(--gradient);
+}
+.fourthSection {
+  flex: 20;
+}
+.ObjectInFourthSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: white;
+  background: var(--gradient);
+}
+.ObjectInFourthSection {
+  gap: 10px;
+  padding: 10px 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  border-radius: 35px;
+  background-color: azure;
+}
+.NameFirstSection {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  font-size: 24px;
+}
+.TextObjectFirstSession {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  color: white;
+}
+.ObjectsInFourthSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+.ObjectsInThirdSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.ObjectsInThirdSection .closeButton {
+  position: absolute;
+  top: -15px;
+  left: -20px;
+  width: 40px;
+  color: white;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(209, 209, 209);
+  border-radius: 50%;
+}
+.ObjectInThirdSection img {
+  position: absolute;
+  z-index: 0;
+  height: 85%;
+  border-radius: 30px;
 }

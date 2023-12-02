@@ -17,7 +17,7 @@ const themes = {
   },
   Xiao: {
     '--banner-color1': '#52A7C1',
-    '--banner-color2': '#B3F6D8'
+    '--banner-color2': '#6ED1EF'
   }
 }
 
