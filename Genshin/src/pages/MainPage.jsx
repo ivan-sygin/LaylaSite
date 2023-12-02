@@ -25,7 +25,7 @@ const MainPage = () => {
       img: 'http://fileserver-bxwzgfn0.b4a.run/photos/5161603aead656cf94e8290fd89a5010b4f9fe91.png',
       color: 'Layla',
       art1: 'https://i.ytimg.com/vi/dGsOQSYhRyw/hqdefault.jpg',
-      art2: 'https://cs14.pikabu.ru/post_img/2022/11/19/5/og_og_1668837778272571137.jpg',
+      art2: 'https://cdn.shazoo.ru/c1400x625/644620_CBTft3k_26-genshin.jpg',
       stkr1:
         'https://static.wikia.nocookie.net/bf340caf-30c4-4084-8add-3bd1e625f774/scale-to-width/755',
       stkr2:
@@ -51,7 +51,7 @@ const MainPage = () => {
       img: 'https://images5.alphacoders.com/110/thumb-1920-1109816.png',
       color: 'Xiao',
       art1: 'https://static.wikia.nocookie.net/0ec66e09-3f5c-411f-b782-c13cd3c95128/scale-to-width/370',
-      art2: 'https://images5.alphacoders.com/113/thumb-350-1131869.png',
+      art2: 'https://i.pinimg.com/originals/16/2c/dd/162cdd3859fba632b16682998d3b1c9c.jpg',
       stkr1:
         'https://i.pinimg.com/originals/8c/53/1f/8c531fdcd9fc224c5df6cf6d7ba49552.png',
       stkr2:

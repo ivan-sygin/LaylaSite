@@ -249,14 +249,16 @@ body {
 .ObjectsInFirstSection {
   flex: 1;
   display: flex;
+  position: relative;
   flex-direction: row;
   gap: 10px;
 }
 
 .ObjectsFirstSession img {
   position: absolute;
-  display: block;
-  margin: auto;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
   height: 100%;
   overflow: hidden;
 }
