@@ -429,4 +429,10 @@ body {
     flex-direction: row;
     gap: 40px;
   }
+  .headerLeftSideContainerPage {
+    font-size: 60px;
+  }
+  .buttonsMainPage {
+    gap: 10px;
+  }
 }
