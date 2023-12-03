@@ -1,9 +1,14 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import NotFoundPage from './pages/system/NotFoundPage'
+import { MyAdmin } from './admin/MyAdmin'
+import { Dashboard } from './admin/AdminPageContent/contentComponents/Dashboard'
+import { Inventory } from './admin/AdminPageContent/contentComponents/Inventory'
+import { OrdersPage } from './admin/AdminPageContent/contentComponents/Orders'
+import { Customers } from './admin/AdminPageContent/contentComponents/Customers'
+import { SignIn } from './admin/AdminLogIn/AdminLogIn'
 
 function App() {
   return (
@@ -12,6 +17,13 @@ function App() {
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path='/admin-login' element={<SignIn />}></Route>
+        <Route path='/admin-panel' element={<MyAdmin />}>
+          <Route path='' element={<Dashboard />}></Route>
+          <Route path='inventory' element={<Inventory />}></Route>
+          <Route path='orders' element={<OrdersPage />}></Route>
+          <Route path='customers' element={<Customers />}></Route>
+        </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
