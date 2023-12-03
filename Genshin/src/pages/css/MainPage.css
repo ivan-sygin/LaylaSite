@@ -12,7 +12,6 @@
 @font-face {
   font-family: 'Comfortaa';
   src: url('fonts/Comfortaa.ttf');
-  font-weight: 1000;
 }
 @font-face {
   font-family: 'RussoOne';
@@ -22,6 +21,7 @@
 
 body {
   font-family: 'Comfortaa';
+  background-color: #f7f7f7;
 }
 .headerMainPage {
   width: 90%;
@@ -403,6 +403,17 @@ body {
     bottom: 240px;
     border-radius: 10%;
     transform: rotate(0deg);
+  }
+}
+@keyframes Shine {
+  0% {
+    box-shadow: 0 0 4px #05cd05;
+  }
+  50% {
+    box-shadow: 0 0 2px #05cd05;
+  }
+  100% {
+    box-shadow: 0 0 4px #05cd05;
   }
 }
 @media screen and (max-width: 768px) {

@@ -51,7 +51,7 @@ const Bubble = () => {
     </>
   )
 }
-const HeaderMainPage = () => {
+export const HeaderMainPage = () => {
   const navigate = useNavigate()
   const LoginButtons = () => {
     const [userInfo, setUserInfo] = useState()
