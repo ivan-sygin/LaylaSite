@@ -4,12 +4,8 @@ import {
   FaArrowLeft,
   FaArrowRight,
   FaSearch,
-  FaCross,
-  FaXing,
   FaTimes
 } from 'react-icons/fa'
-
-import Button from '@mui/material/Button'
 import './css/colors.css'
 import './css/MainPage.css'
 import { useState } from 'react'
@@ -19,7 +15,6 @@ import { useNavigate } from 'react-router-dom'
 import { ServerAdress } from '../components/ApiVavilin'
 
 const MainPage = () => {
-  const navigate = useNavigate()
   return (
     <>
       <HeaderMainPage />
@@ -28,7 +23,7 @@ const MainPage = () => {
   )
 }
 
-const Bubble = (props) => {
+const Bubble = () => {
   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min
   }

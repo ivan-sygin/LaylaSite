@@ -1,5 +1,4 @@
 import { Box, TextField, Button } from '@mui/material'
-import Typography from '@mui/material/Typography'
 import { ServerAdress } from '../../components/ApiVavilin'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +8,7 @@ const validateEmail = (email) => {
   )
 }
 
-export default function RegisterPage(props) {
+export default function RegisterPage() {
   const navigate = useNavigate()
   const FetchRegister = (e) => {
     e.preventDefault()
