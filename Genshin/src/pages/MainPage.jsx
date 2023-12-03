@@ -8,16 +8,43 @@ import {
   FaXing,
   FaTimes
 } from 'react-icons/fa'
+
 import Button from '@mui/material/Button'
 import './css/colors.css'
 import './css/MainPage.css'
 import { useState } from 'react'
 import { ChangeColor } from '../components/colors'
 import { useEffect } from 'react'
-
+const Bubble = () => {
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min
+  }
+  let posX = getRandomArbitrary(1, 1090)
+  let posY = getRandomArbitrary(1, 200)
+  let size = getRandomArbitrary(40, 60)
+  let speed = getRandomArbitrary(5000, 20000)
+  return (
+    <>
+      <div
+        className='bubble'
+        style={{
+          position: 'absolute',
+          bottom: -size,
+          left: posX,
+          width: size + 'px',
+          height: size + 'px',
+          animation: 'goUp ' + speed + 'ms infinite '
+        }}
+        onAnimationEnd={(event) => {
+          event.currentTarget.style.backgroundColor = 'black'
+        }}
+      ></div>
+    </>
+  )
+}
 const MainPage = () => {
   const [character, setCharacter] = useState('Layla')
-  const [fade, setFade] = useState(true)
+
   const characters = {
     Layla: {
       name: 'Лайла',
@@ -62,7 +89,6 @@ const MainPage = () => {
   const SetCharacter = (character) => {
     setCharacter(character)
     ChangeColor(character)
-    setFade(true)
   }
   const changeCharacter = (direction) => {
     let allKeys = Object.keys(characters)
@@ -82,8 +108,42 @@ const MainPage = () => {
     }
   }
   useEffect(() => {
-    SetCharacter('Layla')
+    ChangeColor('Layla')
   }, [])
+  const Banner = () => {
+    const [fade, setFade] = useState(true)
+    return (
+      <>
+        <div className='leftSideBannerMainPage '>
+          <div
+            className={
+              'headerLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
+            }
+          >
+            {characters[character].name}
+          </div>
+          <div
+            className={
+              'descriptionLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
+            }
+            onAnimationEnd={() => setFade(false)}
+          >
+            {characters[character].description}
+          </div>
+        </div>
+        <div className='rightSideBannerMainPage'>
+          <div className='imageInBannerMainPage'>
+            <img
+              src={characters[character].img}
+              alt=''
+              className={fade ? 'FadeInImg' : ''}
+              onAnimationEnd={() => setFade(false)}
+            />
+          </div>
+        </div>
+      </>
+    )
+  }
   return (
     <>
       <header className='headerMainPage'>
@@ -119,33 +179,19 @@ const MainPage = () => {
             'bannerContainerMainPage ' + character + 'bannerContainerMainPage'
           }
         >
-          <div className='leftSideBannerMainPage '>
-            <div
-              className={
-                'headerLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
-              }
-            >
-              {characters[character].name}
-            </div>
-            <div
-              className={
-                'descriptionLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
-              }
-              onAnimationEnd={() => setFade(false)}
-            >
-              {characters[character].description}
-            </div>
+          <div className='bubbles'>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
           </div>
-          <div className='rightSideBannerMainPage'>
-            <div className='imageInBannerMainPage'>
-              <img
-                src={characters[character].img}
-                alt=''
-                className={fade ? 'FadeInImg' : ''}
-                onAnimationEnd={() => setFade(false)}
-              />
-            </div>
-          </div>
+          <Banner />
         </div>
         <div
           className='arrowRightMainPage'
