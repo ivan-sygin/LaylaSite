@@ -11,8 +11,18 @@ export default function NotFoundPage() {
         height={'95vh'}
       >
         <Box>
-          <Box>
-            <img src={Alert} alt='' style={{ height: '90vh' }} />
+          <Box
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            width={'100%'}
+            height={'90vh'}
+          >
+            <img
+              src={Alert}
+              alt=''
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
           </Box>
         </Box>
       </Box>
