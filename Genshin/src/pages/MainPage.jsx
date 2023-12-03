@@ -15,12 +15,24 @@ import './css/MainPage.css'
 import { useState } from 'react'
 import { ChangeColor } from '../components/colors'
 import { useEffect } from 'react'
-const Bubble = () => {
+import { useNavigate } from 'react-router-dom'
+import { ServerAdress } from '../components/ApiVavilin'
+
+const MainPage = () => {
+  const navigate = useNavigate()
+  return (
+    <>
+      <HeaderMainPage />
+      <ContentMainPage />
+    </>
+  )
+}
+
+const Bubble = (props) => {
   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min
   }
   let posX = getRandomArbitrary(1, 1090)
-  let posY = getRandomArbitrary(1, 200)
   let size = getRandomArbitrary(40, 60)
   let speed = getRandomArbitrary(5000, 20000)
   return (
@@ -42,14 +54,88 @@ const Bubble = () => {
     </>
   )
 }
-const MainPage = () => {
+const HeaderMainPage = () => {
+  const navigate = useNavigate()
+  const LoginButtons = () => {
+    const [userInfo, setUserInfo] = useState()
+    const FetchUserData = () => {
+      fetch(ServerAdress + '/auth/users/me', {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setUserInfo(data)
+        })
+    }
+    useEffect(() => {
+      if (sessionStorage.getItem('access_token')) FetchUserData()
+    }, [])
+    if (sessionStorage.getItem('access_token'))
+      return (
+        <div className='login_buttonsMainPage'>
+          <div className='loginbutton_buttonsMainPage'>
+            Привет, {userInfo && userInfo.user.first_name}
+          </div>
+          <div
+            className='signinbutton_buttonsMainPage'
+            onClick={() => {
+              sessionStorage.clear()
+              navigate('/')
+            }}
+          >
+            Выйти
+          </div>
+        </div>
+      )
+    else
+      return (
+        <div className='login_buttonsMainPage'>
+          <div
+            className='loginbutton_buttonsMainPage'
+            onClick={() => navigate('/login')}
+          >
+            Войти
+          </div>
+          <div
+            className='signinbutton_buttonsMainPage'
+            onClick={() => navigate('/register')}
+          >
+            Регистрация
+          </div>
+        </div>
+      )
+  }
+  return (
+    <header className='headerMainPage'>
+      <div className='iconsMainPage'>
+        <div className='iconMainPage icon_profileMainPage'>
+          <FaUser />
+        </div>
+        <div className='iconMainPage icon_addMainPage'>
+          <FaPlus />
+        </div>
+      </div>
+      <div className='buttonsMainPage'>
+        <div className='button_centerMainPage activeMainPage'>Главная</div>
+        <div className='button_centerMainPage'>Поиск</div>
+        <div className='button_centerMainPage'>Сообщение</div>
+      </div>
+      <LoginButtons />
+    </header>
+  )
+}
+const ContentMainPage = () => {
   const [character, setCharacter] = useState('Layla')
 
   const characters = {
     Layla: {
       name: 'Лайла',
       description: 'Лайла — Крио саппорт, предоставляет отряду защиту.',
-      img: 'http://fileserver-bxwzgfn0.b4a.run/photos/5161603aead656cf94e8290fd89a5010b4f9fe91.png',
+      img: 'http://fileserver-bxwzgfn0.b4a.run/photos/fcd241325eb8790e0c16fe2b814765bceebf6270.png',
       color: 'Layla',
       art1: 'https://i.ytimg.com/vi/dGsOQSYhRyw/hqdefault.jpg',
       art2: 'https://cdn.shazoo.ru/c1400x625/644620_CBTft3k_26-genshin.jpg',
@@ -107,14 +193,15 @@ const MainPage = () => {
       }
     }
   }
+
   useEffect(() => {
-    ChangeColor('Layla')
+    SetCharacter('Layla')
   }, [])
   const Banner = () => {
     const [fade, setFade] = useState(true)
     return (
       <>
-        <div className='leftSideBannerMainPage '>
+        <div className='leftSideBannerMainPage'>
           <div
             className={
               'headerLeftSideContainerPage' + (fade ? ' TextFadeIn' : '')
@@ -146,25 +233,6 @@ const MainPage = () => {
   }
   return (
     <>
-      <header className='headerMainPage'>
-        <div className='iconsMainPage'>
-          <div className='iconMainPage icon_profileMainPage'>
-            <FaUser />
-          </div>
-          <div className='iconMainPage icon_addMainPage'>
-            <FaPlus />
-          </div>
-        </div>
-        <div className='buttonsMainPage'>
-          <div className='button_centerMainPage activeMainPage'>Главная</div>
-          <div className='button_centerMainPage'>Поиск</div>
-          <div className='button_centerMainPage'>Сообщение</div>
-        </div>
-        <div className='login_buttonsMainPage'>
-          <div className='loginbutton_buttonsMainPage'>Войти</div>
-          <div className='signinbutton_buttonsMainPage'>Регистрация</div>
-        </div>
-      </header>
       <div className='bannerMainPage'>
         <div
           className='arrowLeftMainPage'
