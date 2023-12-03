@@ -17,8 +17,10 @@ import { ServerAdress } from '../components/ApiVavilin'
 const MainPage = () => {
   return (
     <>
-      <HeaderMainPage />
-      <ContentMainPage />
+      <div className='wrapper'>
+        <HeaderMainPage />
+        <ContentMainPage />
+      </div>
     </>
   )
 }
