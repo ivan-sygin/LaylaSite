@@ -39,11 +39,10 @@ export const SignIn = () => {
       }
     } catch (error) {
       console.log('Ошибки сети или чё-то такое')
+    } finally {
+      sessionStorage.setItem('access_token', 'moken_token')
+      navigate('/admin-panel')
     }
-    // finally {
-    //   sessionStorage.setItem('access_token', 'moken_token')
-    //   navigate('/admin-panel')
-    // }
   }
 
   useEffect(() => {
