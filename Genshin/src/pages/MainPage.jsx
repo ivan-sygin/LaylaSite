@@ -71,10 +71,10 @@ export const HeaderMainPage = () => {
     useEffect(() => {
       if (sessionStorage.getItem('access_token')) FetchUserData()
     }, [])
-    if (sessionStorage.getItem('access_token'))
+    if (userInfo)
       return (
         <div className='login_buttonsMainPage'>
-          <div className='loginbutton_buttonsMainPage'>
+          <div className='loginbutton_buttonsMainPage' onClick={()=>{navigate("/profile/"+userInfo.user.id)}}>
             Привет, {userInfo && userInfo.user.first_name}
           </div>
           <div
