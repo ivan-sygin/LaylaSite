@@ -1,6 +1,6 @@
 import { Box, autocompleteClasses } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { HeaderMainPage } from '../main_page/MainPage'
+import { HeaderMainPage } from '../main_page/components/header'
 import { useEffect, useState } from 'react'
 import {
   ServerAdress,
