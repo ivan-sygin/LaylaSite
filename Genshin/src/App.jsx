@@ -11,6 +11,7 @@ import { Users } from './admin/AdminPageContent/contentComponents/Users'
 import { SignIn } from './admin/AdminLogIn/AdminLogIn'
 import ProfilePage from './pages/profile/ProfilePage'
 import { TestPage } from './pages/tests/TestPage'
+import { Tickets } from './admin/AdminPageContent/contentComponents/Tickets'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='questions' element={<Questions />}></Route>
           <Route path='dangers' element={<OrdersPage />}></Route>
           <Route path='users' element={<Users />}></Route>
+          <Route path='tickets' element={<Tickets />}></Route>
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

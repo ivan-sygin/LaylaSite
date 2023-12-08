@@ -50,6 +50,14 @@ export const AdminSideMenu = () => {
               <ListItemText primary='Пользователи' />
             </ListItemButton>
           </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => navigate('/admin-panel/tickets')}>
+              <ListItemIcon>
+                <PersonOutlineOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary='Тикеты' />
+            </ListItemButton>
+          </ListItem>
         </List>
       </nav>
     </div>
