@@ -7,12 +7,16 @@ import {
   Typography
 } from '@mui/material'
 import { deepOrange } from '@mui/material/colors'
-import EmailIcon from '@mui/icons-material/Email'
+import ContactSupportIcon from '@mui/icons-material/ContactSupport'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import { useNavigate } from 'react-router-dom'
 import { ServerAdress2 } from '../../components/ApiVavilin'
 import { useEffect, useState } from 'react'
+
+const handleClickSupport = () => {
+  window.open('https://web.telegram.org/a/')
+}
 
 export const AdminHeader = () => {
   const [userPhoto, setUserPhoto] = useState()
@@ -73,14 +77,18 @@ export const AdminHeader = () => {
               gap: '6px'
             }}
           >
-            <IconButton aria-label='email' color='inherit'>
-              <Badge badgeContent={0} color='error' max={99} variant='dot'>
-                <EmailIcon />
-              </Badge>
-            </IconButton>
             <IconButton aria-label='notifications' color='inherit'>
               <Badge badgeContent={4} color='error' max={99}>
                 <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              aria-label='email'
+              color='inherit'
+              onClick={handleClickSupport}
+            >
+              <Badge badgeContent={0} color='error' max={99} variant='dot'>
+                <ContactSupportIcon />
               </Badge>
             </IconButton>
 
