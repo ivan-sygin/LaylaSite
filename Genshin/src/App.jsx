@@ -23,7 +23,7 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile/:id' element={<ProfilePage />} />
         <Route path='/test/:id_test' element={<TestPage />} />
-        <Route path='/materials' element={<MaterialPage />}>
+        <Route path='/materials/:id_page' element={<MaterialPage />}>
           <Route path='' element={<Dashboard />}></Route>
         </Route>
 

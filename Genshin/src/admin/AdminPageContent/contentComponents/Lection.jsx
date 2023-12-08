@@ -1,9 +1,22 @@
 import { Box } from '@mui/material'
 import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { TOKEN } from '../../../components/TokenController'
 
 const handleClick = () => {
   const name = document.getElementById('name_lection').value
   const text = document.getElementById('text_lection').value
+  fetch(ServerAdress2 + '/topics/create', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + TOKEN,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title: name, text: text })
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
   console.log(name, text)
 }
 

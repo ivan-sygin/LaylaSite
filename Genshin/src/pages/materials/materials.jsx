@@ -3,7 +3,9 @@ import { HeaderMainPage } from '../main_page/components/header'
 import { LectionComments1, TextLection1 } from './fishtext'
 import { flexbox } from '@mui/system'
 import { FaArrowRight } from 'react-icons/fa'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
+import { useEffect, useState } from 'react'
+import { ServerAdress2 } from '../../components/ApiVavilin'
 
 const LectionHeader = ({ title }) => {
   return (
@@ -14,12 +16,13 @@ const LectionHeader = ({ title }) => {
 }
 
 const LectionBody = ({ text }) => {
+  const inner = { __html: text }
   return (
     <Box
       fontSize={20}
       fontFamily={'Inter'}
       marginTop={'10px'}
-      dangerouslySetInnerHTML={text}
+      dangerouslySetInnerHTML={inner}
     ></Box>
   )
 }
@@ -119,11 +122,25 @@ const WriteCommentSection = () => {
 }
 
 export const MaterialPage = () => {
+  const { id_page } = useParams()
+  const [data, setData] = useState()
+
+  const fetchData = (id) => {
+    fetch(ServerAdress2 + '/topics/getById?id=' + id)
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json.topic)
+      })
+  }
+
+  useEffect(() => {
+    fetchData(id_page)
+  }, [])
   return (
     <Box width={'90%'} margin={'auto'}>
       <HeaderMainPage />
-      <LectionHeader title={'Лекция 1'} />
-      <LectionBody text={TextLection1} />
+      <LectionHeader title={data?.title} />
+      <LectionBody text={data?.text} />
       <LectionComments comments={LectionComments1.comments} />
       <WriteCommentSection />
     </Box>
