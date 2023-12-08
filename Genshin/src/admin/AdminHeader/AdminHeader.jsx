@@ -19,7 +19,7 @@ const handleClickSupport = () => {
 }
 
 export const AdminHeader = () => {
-  const [userPhoto, setUserPhoto] = useState()
+  const [userPhoto, setUserPhoto] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -34,10 +34,9 @@ export const AdminHeader = () => {
             }
           }
         )
-        console.log(sessionStorage.getItem('access_token'))
         if (response.ok) {
           const json = await response.json()
-          setUserPhoto(JSON.stringify(json.user?.photo))
+          setUserPhoto(json.user?.photo)
         } else {
           console.log('WRONG DATA')
         }
@@ -59,7 +58,8 @@ export const AdminHeader = () => {
               bgcolor: deepOrange[500],
               width: '50px',
               height: '50px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0px 0px 12px 0px #939393;'
             }}
             onClick={() => {
               navigate(`/profile/${sessionStorage.getItem('id')}`)

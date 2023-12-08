@@ -23,19 +23,19 @@ export const AdminSideMenu = () => {
               <ListItemIcon>
                 <DashboardOutlinedIcon />
               </ListItemIcon>
-              <ListItemText primary='Dashboard' />
+              <ListItemText primary='Статистика тем' />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate('/admin-panel/inventory')}>
+            <ListItemButton onClick={() => navigate('/admin-panel/questions')}>
               <ListItemIcon>
                 <StoreOutlinedIcon />
               </ListItemIcon>
-              <ListItemText primary='Inventory' />
+              <ListItemText primary='Вопросы' />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate('/admin-panel/orders')}>
+            <ListItemButton onClick={() => navigate('/admin-panel/dangers')}>
               <ListItemIcon>
                 <CoronavirusOutlinedIcon />
               </ListItemIcon>

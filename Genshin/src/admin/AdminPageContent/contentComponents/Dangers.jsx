@@ -13,9 +13,8 @@ export const OrdersPage = () => {
   return (
     <Container maxWidth='lg' sx={{ mt: 1 }}>
       <Typography variant='h4' gutterBottom>
-        Orders
+        Угрозы
       </Typography>
-      <AllOrders />
     </Container>
   )
 }

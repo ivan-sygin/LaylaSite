@@ -8,10 +8,9 @@ export const Dashboard = () => {
     <div>
       <Container maxWidth='lg' sx={{ mt: 1 }}>
         <Typography variant='h4' gutterBottom>
-          Dashboard
+          Статистика тем
         </Typography>
-        <Grid container spacing={3}>
-          {/* Chart */}
+        {/* <Grid container spacing={3}>
           <Grid item xs={12} md={8} lg={9}>
             <Paper
               sx={{
@@ -24,7 +23,6 @@ export const Dashboard = () => {
               <Chart />
             </Paper>
           </Grid>
-          {/* Recent Deposits */}
           <Grid item xs={12} md={4} lg={3}>
             <Paper
               sx={{
@@ -37,13 +35,12 @@ export const Dashboard = () => {
               <Deposits />
             </Paper>
           </Grid>
-          {/* Recent Orders */}
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
               <AllOrders />
             </Paper>
           </Grid>
-        </Grid>
+        </Grid> */}
       </Container>
     </div>
   )
