@@ -160,6 +160,36 @@ const ImageAndTextBox = ({ user, photo, setPhoto }) => {
     </Box>
   )
 }
+
+const LevelComponent = ({ userInfo }) => {
+  if (userInfo)
+    return (
+      <Box bgcolor={'white'} padding={'20px'}>
+        <Box textAlign={'center'}>
+          Level {Math.floor(userInfo.experience / 100) + 1}
+        </Box>
+        <Box
+          width={'100%'}
+          height={'3px'}
+          bgcolor={'gray'}
+          borderRadius={'2px'}
+        >
+          <Box
+            width={`${
+              userInfo.experience - 100 * Math.floor(userInfo.experience / 100)
+            }%`}
+            bgcolor={'yellow'}
+            height={'3px'}
+          ></Box>
+        </Box>
+        <Box textAlign={'center'} fontSize={8} marginTop={'2px'}>
+          {userInfo.experience - 100 * Math.floor(userInfo.experience / 100)}
+          /100
+        </Box>
+      </Box>
+    )
+}
+
 export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState()
   const [photo, setPhoto] = useState()
@@ -186,6 +216,7 @@ export default function ProfilePage() {
         <Box height={20} />
         <GradientBox />
         <ImageAndTextBox user={userInfo} photo={photo} setPhoto={setPhoto} />
+        <LevelComponent userInfo={userInfo} />
         <Box
           bgcolor={'white'}
           borderRadius={'0px 0px 30px 30px'}

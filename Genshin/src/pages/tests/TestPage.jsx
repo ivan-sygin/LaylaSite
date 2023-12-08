@@ -1,8 +1,8 @@
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ServerAdress2 } from '../../components/ApiVavilin'
-
+let finished = []
 export const TestPage = () => {
   const { id_test } = useParams()
 
@@ -14,52 +14,88 @@ export const TestPage = () => {
     fetch(ServerAdress2 + `/tests/getById?test_id=${id_test}`)
       .then((response) => response.json())
       .then((json) => {
+        finished = Array(json.test.questions.length).fill(0)
         setTestFromApi(json.test)
       })
   }
   useEffect(() => {
     fetchTestData()
   }, [])
-
+  if (testFromApi)
+    return (
+      <Box width={'90%'} margin={'auto'} marginTop={10}>
+        <div className='white_divs'>
+          <HeadOfComponent radius={20} height={40} />
+          <Title name={testFromApi?.title} />
+          <TestForm
+            test={testFromApi}
+            id_question={currStage}
+            sCS={setCurrStage}
+          />
+          <BottomCircles
+            lenght={Object.keys(testFromApi?.questions).length}
+            current={currStage}
+            sCS={setCurrStage}
+          />
+          <EndOfComponent radius={20} height={40} />
+        </div>
+      </Box>
+    )
+}
+const VariantAnswer = ({ id, answer, currStage }) => {
+  if (finished[currStage] == id)
+    return (
+      <Box fontSize={18}>
+        <input
+          type='radio'
+          id={'radio' + id}
+          name='variant_answer'
+          defaultChecked={true}
+          onClick={(e) => {
+            finished[currStage] = id
+          }}
+        ></input>
+        <label for={'radio' + id}>{answer.answer}</label>
+      </Box>
+    )
   return (
-    <Box width={'90%'} margin={'auto'} marginTop={10}>
-      <div className='white_divs'>
-        <HeadOfComponent radius={20} height={40} />
-        <Title name={testFromApi?.title} />
-        <TestForm test={testFromApi} id_question={currStage} />
-        <BottomCircles
-          lenght={Object.keys(testFromApi?.questions).length}
-          current={currStage}
-          sCS={setCurrStage}
-        />
-        <EndOfComponent radius={20} height={40} />
-      </div>
+    <Box fontSize={18}>
+      <input
+        type='radio'
+        id={'radio' + id}
+        name='variant_answer'
+        defaultChecked={false}
+        onClick={(e) => {
+          finished[currStage] = id
+        }}
+      ></input>
+      <label for={'radio' + id}>{answer.answer}</label>
     </Box>
   )
 }
-
-const FormTask = ({ title, text_task }) => {
+const FormTask = ({ title, test, currStage, setCurrStage }) => {
   return (
     <Box>
       <Box fontSize={24} fontWeight={700}>
         {title}
       </Box>
-      <Box paddingLeft={'20px'} paddingTop={'5px'}>
-        {text_task}
+      <Box fontSize={24} fontWeight={700} component={'form'} marginY={'10px'}>
+        {test.map((_, i) => {
+          return <VariantAnswer id={i} answer={_} currStage={currStage} />
+        })}
       </Box>
-      <Box
-        onClick={(e) => {
-          console.log('da')
-          e.currentTarget.innerHTML = 'gay'
+      <Button
+        onClick={() => {
+          setCurrStage(currStage + 1)
         }}
       >
-        {text_task}
-      </Box>
+        Следующий вопрос
+      </Button>
     </Box>
   )
 }
 
-const TestForm = ({ test, id_question }) => {
+const TestForm = ({ test, id_question, sCS }) => {
   if (test)
     return (
       <Box
@@ -72,7 +108,9 @@ const TestForm = ({ test, id_question }) => {
       >
         <FormTask
           title={test.questions[id_question].text_question}
-          text_task={test.description}
+          test={test.questions[id_question].answers}
+          currStage={id_question}
+          setCurrStage={sCS}
         />
       </Box>
     )
