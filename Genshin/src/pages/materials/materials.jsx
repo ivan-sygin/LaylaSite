@@ -36,18 +36,19 @@ const CommentBlock = ({ comment }) => {
       flexDirection={'row'}
       alignItems={'start'}
       //border={1}
-      padding={2}
+      //padding={2}
+      paddingBottom={'5px'}
       borderRadius={'10px'}
       borderColor={'var(--banner-color1)'}
     >
       <Box
-        maxHeight={100}
-        maxWidth={100}
+        maxHeight={50}
+        maxWidth={50}
         borderRadius={'50%'}
         overflow={'hidden'}
         marginRight={3}
       >
-        <img src={comment?.owner_photo} alt='' width={'100%'} height={'auto'} />
+        <img src={comment?.user.photo} alt='' width={'100%'} height={'auto'} />
       </Box>
       <Box>
         <Box
@@ -57,12 +58,16 @@ const CommentBlock = ({ comment }) => {
           alignItems={'center'}
           gap={'20px'}
         >
-          <Box fontFamily={'Inter'}>{comment?.owner_name}</Box>
+          <Box fontFamily={'Inter'} fontWeight={700}>
+            {comment?.user.first_name}
+          </Box>
           <Box fontFamily={'Inter'} fontSize={'10px'}>
             {comment?.time}
           </Box>
         </Box>
-        <Box>{comment.message}</Box>
+        <Box fontFamily={'Inter'} fontWeight={300}>
+          {comment.message}
+        </Box>
       </Box>
     </Box>
   )
@@ -107,6 +112,7 @@ const handleClick = (id, fetchData) => {
     .then((response) => response.json())
     .then((json) => {
       fetchData(id)
+
       console.log(json)
     })
 }
@@ -121,7 +127,7 @@ const WriteCommentSection = ({ id, fetchData }) => {
         id='textarea_comment'
         padding={2}
         borderRadius={'20px 0 0 20px'}
-        minHeight={'100px'}
+        minHeight={'50px'}
         flex={85}
         border={0}
       ></Box>
@@ -129,7 +135,7 @@ const WriteCommentSection = ({ id, fetchData }) => {
         component={'button'}
         type='submit'
         flex={15}
-        minHeight={'100px'}
+        minHeight={'50px'}
         borderRadius={'0 20px 20px 0'}
         border={0}
         sx={{ cursor: 'pointer' }}
@@ -153,7 +159,17 @@ export const MaterialPage = () => {
     fetch(ServerAdress2 + '/topics/getById?id=' + id)
       .then((response) => response.json())
       .then((json) => {
-        setData(json.topic[0])
+        function compare(a, b) {
+          if (a.id < b.id) {
+            return -1
+          }
+          if (a.id > b.id) {
+            return 1
+          }
+          return 0
+        }
+        json.topic.comments.sort(compare)
+        setData(json.topic)
       })
   }
 
