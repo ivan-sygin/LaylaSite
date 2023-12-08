@@ -33,16 +33,18 @@ export const SignIn = () => {
       if (response.ok) {
         const json = await response.json()
         sessionStorage.setItem('access_token', json.access_token)
+        sessionStorage.setItem('id', json.id)
         navigate('/admin-panel')
       } else {
-        console.log('ПИИИИЗДЕЦ, WRONG DATA')
+        console.log('WRONG DATA')
       }
     } catch (error) {
       console.log('Ошибки сети или чё-то такое')
-    } finally {
-      sessionStorage.setItem('access_token', 'moken_token')
-      navigate('/admin-panel')
     }
+    // finally {
+    //   sessionStorage.setItem('access_token', 'moken_token')
+    //   navigate('/admin-panel')
+    // }
   }
 
   useEffect(() => {

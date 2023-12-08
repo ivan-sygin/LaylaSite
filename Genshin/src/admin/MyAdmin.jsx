@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, CssBaseline } from '@mui/material'
 import './MyAdmin.css'
 import { AdminHeader } from './AdminHeader/AdminHeader'
 import { AdminSideMenu } from './AdminSideMenu/AdminSideMenu'
@@ -24,6 +24,7 @@ export const MyAdmin = () => {
 
   return (
     <>
+      <CssBaseline />
       {isLoading ? (
         <Loader />
       ) : (
@@ -34,7 +35,7 @@ export const MyAdmin = () => {
             sx={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'flex-start',
+              justifyContent: 'center',
               alignItems: 'flex-start',
               flex: '1'
             }}
