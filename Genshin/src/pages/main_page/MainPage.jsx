@@ -10,7 +10,6 @@ const MainPage = () => {
       <div className='wrapper'>
         <HeaderMainPage />
         <ContentMainPage />
-        <AdvisesToUser />
       </div>
     </>
   )
