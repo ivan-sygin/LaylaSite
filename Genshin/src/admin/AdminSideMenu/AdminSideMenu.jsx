@@ -43,11 +43,11 @@ export const AdminSideMenu = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate('/admin-panel/customers')}>
+            <ListItemButton onClick={() => navigate('/admin-panel/users')}>
               <ListItemIcon>
                 <PersonOutlineOutlinedIcon />
               </ListItemIcon>
-              <ListItemText primary='Customers' />
+              <ListItemText primary='Пользователи' />
             </ListItemButton>
           </ListItem>
         </List>

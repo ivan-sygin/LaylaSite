@@ -35,7 +35,7 @@ export const MyAdmin = () => {
             sx={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
               alignItems: 'flex-start',
               flex: '1'
             }}
