@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "host": "vite --host 0.0.0.0"
+    "host": "vite --host 0.0.0.0",
+    "radmin": "vite --host 26.170.53.65"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -22,7 +22,7 @@ const GradientBox = () => {
 
 const ImageAndTextBox = ({ user, photo, setPhoto }) => {
   const handleChangeImage = (e) => {
-    if (e.currentTarget.files[0]) return
+    if (!e.currentTarget.files[0]) return
     let formData = new FormData()
     formData.append('file', e.currentTarget.files[0])
 

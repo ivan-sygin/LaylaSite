@@ -91,7 +91,7 @@ export const HeaderMainPage = () => {
           Главная
         </Link>
         <div className='button_centerMainPage'>Поиск</div>
-        <div className='button_centerMainPage'>Сообщение</div>
+        <div className='button_centerMainPage'>Материалы</div>
       </div>
       <LoginButtons />
     </header>
