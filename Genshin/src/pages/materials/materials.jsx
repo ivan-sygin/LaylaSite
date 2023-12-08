@@ -29,48 +29,54 @@ const LectionBody = ({ text }) => {
 }
 
 const CommentBlock = ({ comment }) => {
-  return (
-    <Box
-      minHeight={50}
-      display={'flex'}
-      flexDirection={'row'}
-      alignItems={'start'}
-      //border={1}
-      //padding={2}
-      paddingBottom={'5px'}
-      borderRadius={'10px'}
-      borderColor={'var(--banner-color1)'}
-    >
+  if (comment)
+    return (
       <Box
-        maxHeight={50}
-        maxWidth={50}
-        borderRadius={'50%'}
-        overflow={'hidden'}
-        marginRight={3}
+        minHeight={50}
+        display={'flex'}
+        flexDirection={'row'}
+        alignItems={'start'}
+        //border={1}
+        //padding={2}
+        paddingBottom={'5px'}
+        borderRadius={'10px'}
+        borderColor={'var(--banner-color1)'}
       >
-        <img src={comment?.user.photo} alt='' width={'100%'} height={'auto'} />
-      </Box>
-      <Box>
         <Box
-          display={'flex'}
-          flexDirection={'row'}
-          justifyContent={'left'}
-          alignItems={'center'}
-          gap={'20px'}
+          maxHeight={50}
+          maxWidth={50}
+          borderRadius={'50%'}
+          overflow={'hidden'}
+          marginRight={3}
         >
-          <Box fontFamily={'Inter'} fontWeight={700}>
-            {comment?.user.first_name}
-          </Box>
-          <Box fontFamily={'Inter'} fontSize={'10px'}>
-            {comment?.time}
-          </Box>
+          <img
+            src={comment?.user.photo}
+            alt=''
+            width={'100%'}
+            height={'auto'}
+          />
         </Box>
-        <Box fontFamily={'Inter'} fontWeight={300}>
-          {comment.message}
+        <Box>
+          <Box
+            display={'flex'}
+            flexDirection={'row'}
+            justifyContent={'left'}
+            alignItems={'center'}
+            gap={'20px'}
+          >
+            <Box fontFamily={'Inter'} fontWeight={700}>
+              {comment?.user.first_name}
+            </Box>
+            <Box fontFamily={'Inter'} fontSize={'10px'}>
+              {comment?.time}
+            </Box>
+          </Box>
+          <Box fontFamily={'Inter'} fontWeight={300}>
+            {comment.message}
+          </Box>
         </Box>
       </Box>
-    </Box>
-  )
+    )
 }
 
 const LectionComments = ({ comments }) => {
