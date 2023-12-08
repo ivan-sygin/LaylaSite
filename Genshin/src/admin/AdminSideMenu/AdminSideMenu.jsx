@@ -6,7 +6,7 @@ import {
   ListItemText
 } from '@mui/material'
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
-import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined'
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'
 import CoronavirusOutlinedIcon from '@mui/icons-material/CoronavirusOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import PlayLessonIcon from '@mui/icons-material/PlayLesson'
@@ -30,7 +30,7 @@ export const AdminSideMenu = () => {
           <ListItem disablePadding>
             <ListItemButton onClick={() => navigate('/admin-panel/questions')}>
               <ListItemIcon>
-                <StoreOutlinedIcon />
+                <AssignmentOutlinedIcon />
               </ListItemIcon>
               <ListItemText primary='Вопросы' />
             </ListItemButton>
