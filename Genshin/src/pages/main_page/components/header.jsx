@@ -91,7 +91,13 @@ export const HeaderMainPage = () => {
           Главная
         </Link>
         <div className='button_centerMainPage'>Поиск</div>
-        <div className='button_centerMainPage'>Материалы</div>
+        <Link
+          to='/materials'
+          className='button_centerMainPage'
+          onClick={() => navigate('/materials')}
+        >
+          Материалы
+        </Link>
       </div>
       <LoginButtons />
     </header>

@@ -26,7 +26,7 @@ export const TestPage = () => {
       <Box width={'90%'} margin={'auto'} marginTop={10}>
         <div className='white_divs'>
           <HeadOfComponent radius={20} height={40} />
-          <Title name={testFromApi?.title} />
+          <Title name={'Комплексное тестирование'} />
           <TestForm
             test={testFromApi}
             id_question={currStage}
@@ -45,7 +45,7 @@ export const TestPage = () => {
 const VariantAnswer = ({ id, answer, currStage }) => {
   if (finished[currStage] == id)
     return (
-      <Box fontSize={18}>
+      <Box fontSize={18} padding={2}>
         <input
           type='radio'
           id={'radio' + id}
@@ -59,7 +59,7 @@ const VariantAnswer = ({ id, answer, currStage }) => {
       </Box>
     )
   return (
-    <Box fontSize={18}>
+    <Box fontSize={18} padding={2}>
       <input
         type='radio'
         id={'radio' + id}
@@ -76,10 +76,16 @@ const VariantAnswer = ({ id, answer, currStage }) => {
 const FormTask = ({ title, test, currStage, setCurrStage }) => {
   return (
     <Box>
-      <Box fontSize={24} fontWeight={700}>
+      <Box fontSize={24} fontWeight={700} marginBottom={1}>
         {title}
       </Box>
-      <Box fontSize={24} fontWeight={700} component={'form'} marginY={'10px'}>
+      <Box
+        fontSize={24}
+        fontWeight={700}
+        component={'form'}
+        marginY={'10px'}
+        minHeight={300}
+      >
         {test.map((_, i) => {
           return <VariantAnswer id={i} answer={_} currStage={currStage} />
         })}
@@ -144,6 +150,7 @@ const Title = ({ name }) => {
         fontWeight={700}
         fontSize={'40px'}
         bgcolor={'white'}
+        paddingBottom={2}
       >
         {name}
       </Box>

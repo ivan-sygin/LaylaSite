@@ -9,6 +9,7 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined'
 import CoronavirusOutlinedIcon from '@mui/icons-material/CoronavirusOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import PlayLessonIcon from '@mui/icons-material/PlayLesson'
 import { useNavigate } from 'react-router-dom'
 
 export const AdminSideMenu = () => {
@@ -51,11 +52,11 @@ export const AdminSideMenu = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate('/admin-panel/tickets')}>
+            <ListItemButton onClick={() => navigate('/admin-panel/lections')}>
               <ListItemIcon>
-                <PersonOutlineOutlinedIcon />
+                <PlayLessonIcon />
               </ListItemIcon>
-              <ListItemText primary='Тикеты' />
+              <ListItemText primary='Лекции' />
             </ListItemButton>
           </ListItem>
         </List>
