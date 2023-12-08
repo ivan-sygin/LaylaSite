@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import CoronavirusOutlinedIcon from '@mui/icons-material/CoronavirusOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import { useNavigate } from 'react-router-dom'
 
@@ -37,9 +37,9 @@ export const AdminSideMenu = () => {
           <ListItem disablePadding>
             <ListItemButton onClick={() => navigate('/admin-panel/orders')}>
               <ListItemIcon>
-                <ShoppingCartOutlinedIcon />
+                <CoronavirusOutlinedIcon />
               </ListItemIcon>
-              <ListItemText primary='Orders' />
+              <ListItemText primary='Угрозы КБ' />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>

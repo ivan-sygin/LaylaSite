@@ -55,7 +55,15 @@ export const AdminHeader = () => {
           <Avatar
             alt='Admin'
             src={userPhoto}
-            sx={{ bgcolor: deepOrange[500], width: '50px', height: '50px' }}
+            sx={{
+              bgcolor: deepOrange[500],
+              width: '50px',
+              height: '50px',
+              cursor: 'pointer'
+            }}
+            onClick={() => {
+              navigate(`/profile/${sessionStorage.getItem('id')}`)
+            }}
           />
           <Typography
             variant='h5'

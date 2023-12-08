@@ -15,6 +15,7 @@ export const OrdersPage = () => {
       <Typography variant='h4' gutterBottom>
         Orders
       </Typography>
+      <AllOrders />
     </Container>
   )
 }
@@ -71,7 +72,7 @@ function preventDefault(event) {
   event.preventDefault()
 }
 
-export default function AllOrders() {
+export const AllOrders = () => {
   return (
     <>
       <Typography component='h2' variant='h6' color='primary' gutterBottom>
