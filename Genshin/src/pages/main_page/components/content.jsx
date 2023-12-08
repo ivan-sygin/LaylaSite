@@ -182,7 +182,6 @@ export const ContentMainPage = () => {
         </div>
       </div>
       <AdvisesToUser />
-      <BottomInfo />
     </>
   )
 }
