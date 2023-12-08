@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import MainPage from './pages/MainPage'
+import MainPage from './pages/main_page/MainPage'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import NotFoundPage from './pages/system/NotFoundPage'
