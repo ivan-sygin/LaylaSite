@@ -7,7 +7,7 @@ import { MyAdmin } from './admin/MyAdmin'
 import { Dashboard } from './admin/AdminPageContent/contentComponents/Dashboard'
 import { Inventory } from './admin/AdminPageContent/contentComponents/Inventory'
 import { OrdersPage } from './admin/AdminPageContent/contentComponents/Orders'
-import { Customers } from './admin/AdminPageContent/contentComponents/Customers'
+import { Users } from './admin/AdminPageContent/contentComponents/Users'
 import { SignIn } from './admin/AdminLogIn/AdminLogIn'
 import ProfilePage from './pages/profile/ProfilePage'
 
@@ -25,7 +25,7 @@ function App() {
           <Route path='' element={<Dashboard />}></Route>
           <Route path='inventory' element={<Inventory />}></Route>
           <Route path='orders' element={<OrdersPage />}></Route>
-          <Route path='customers' element={<Customers />}></Route>
+          <Route path='users' element={<Users />}></Route>
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
