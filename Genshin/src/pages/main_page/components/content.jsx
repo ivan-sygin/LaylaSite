@@ -64,45 +64,8 @@ export const ContentMainPage = () => {
       </>
     )
   }
-  return (
-    <>
-      <div className='bannerMainPage'>
-        <div
-          className='arrowLeftMainPage'
-          onClick={() => {
-            changeCharacter(-1)
-          }}
-        >
-          <FaArrowLeft />
-        </div>
-        <div
-          className={
-            'bannerContainerMainPage ' + character + 'bannerContainerMainPage'
-          }
-        >
-          <div className='bubbles'>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-            <Bubble></Bubble>
-          </div>
-          <Banner />
-        </div>
-        <div
-          className='arrowRightMainPage'
-          onClick={() => {
-            changeCharacter(1)
-          }}
-        >
-          <FaArrowRight />
-        </div>
-      </div>
+  const BottomInfo = () => {
+    return (
       <div className='bottomLayerMainPage'>
         <div className='firstSection'>
           <div className='wrapperFirst'>
@@ -171,6 +134,47 @@ export const ContentMainPage = () => {
             <div className='ObjectInFourthSection'></div>
             <div className='ObjectInFourthSection'></div>
           </div>
+        </div>
+      </div>
+    )
+  }
+  return (
+    <>
+      <div className='bannerMainPage'>
+        <div
+          className='arrowLeftMainPage'
+          onClick={() => {
+            changeCharacter(-1)
+          }}
+        >
+          <FaArrowLeft />
+        </div>
+        <div
+          className={
+            'bannerContainerMainPage ' + character + 'bannerContainerMainPage'
+          }
+        >
+          <div className='bubbles'>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+            <Bubble></Bubble>
+          </div>
+          <Banner />
+        </div>
+        <div
+          className='arrowRightMainPage'
+          onClick={() => {
+            changeCharacter(1)
+          }}
+        >
+          <FaArrowRight />
         </div>
       </div>
     </>
