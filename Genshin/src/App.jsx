@@ -6,7 +6,7 @@ import NotFoundPage from './pages/system/NotFoundPage'
 import { MyAdmin } from './admin/MyAdmin'
 import { Dashboard } from './admin/AdminPageContent/contentComponents/Dashboard'
 import { Questions } from './admin/AdminPageContent/contentComponents/Questions'
-import { OrdersPage } from './admin/AdminPageContent/contentComponents/Dangers'
+import { DangersPage } from './admin/AdminPageContent/contentComponents/Dangers'
 import { Users } from './admin/AdminPageContent/contentComponents/Users'
 import { SignIn } from './admin/AdminLogIn/AdminLogIn'
 import ProfilePage from './pages/profile/ProfilePage'
@@ -27,7 +27,7 @@ function App() {
         <Route path='/admin-panel' element={<MyAdmin />}>
           <Route path='' element={<Dashboard />}></Route>
           <Route path='questions' element={<Questions />}></Route>
-          <Route path='dangers' element={<OrdersPage />}></Route>
+          <Route path='dangers' element={<DangersPage />}></Route>
           <Route path='users' element={<Users />}></Route>
           <Route path='tickets' element={<Tickets />}></Route>
         </Route>

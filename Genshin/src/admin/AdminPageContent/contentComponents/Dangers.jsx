@@ -1,20 +1,94 @@
 import {
+  Alert,
+  Button,
   Container,
+  Paper,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  TextareaAutosize,
   Typography
 } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { useState } from 'react'
 
-export const OrdersPage = () => {
+export const DangersPage = () => {
+  const [open, setOpen] = useState(false)
+  const [severityValue, setSeverityValue] = useState('success')
+  const [alertText, setAlertText] = useState('Информация добавлена успешно!')
+
+  const handleClick = () => {
+    const title = document.getElementById('title').value
+    const description = document.getElementById('description').value
+    fetch(ServerAdress2 + '/alerts/setLast', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title: title, description: description })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setOpen(true)
+        setSeverityValue('success')
+        setAlertText('Информация добавлена успешно!')
+        console.log(data)
+      })
+      .catch(function (err) {
+        severityValue('error')
+        setAlertText('Ошибка добавления данных')
+        console.log(err.message)
+      })
+    console.log(title, description)
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpen(false)
+  }
+
   return (
-    <Container maxWidth='lg' sx={{ mt: 1 }}>
+    <Container maxWidth='lg' sx={{ mt: 1, width: '50vw' }}>
       <Typography variant='h4' gutterBottom>
         Угрозы
       </Typography>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          gap: '4px'
+        }}
+      >
+        <Typography variant='h10'>Название угрозы:</Typography>
+        <TextareaAutosize id='title' minRows={1} placeholder='Название' />
+        <Typography variant='h10'>Содержание:</Typography>
+        <TextareaAutosize
+          id='description'
+          minRows={3}
+          placeholder='Вводите тут...'
+        />
+        <Button onClick={handleClick}>Отправить</Button>
+      </Paper>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity={severityValue}
+          sx={{ width: '100%' }}
+        >
+          {alertText}
+        </Alert>
+      </Snackbar>
     </Container>
   )
 }

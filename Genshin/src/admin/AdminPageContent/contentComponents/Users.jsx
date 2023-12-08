@@ -1,6 +1,11 @@
 import {
   Box,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Paper,
   Table,
   TableBody,
@@ -10,14 +15,21 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
+  TextField,
   Toolbar,
-  Typography
+  Typography,
+  Button
 } from '@mui/material'
 import PropTypes from 'prop-types'
 import { alpha } from '@mui/material/styles'
 import { visuallyHidden } from '@mui/utils'
 import { useEffect, useMemo, useState } from 'react'
 import { ServerAdress2 } from '../../../components/ApiVavilin'
+
+const usersTests = [
+  { id: 6, themes: { cybersecurity: 0, phishing: 1, carding: 0 } },
+  { id: 7, themes: { cybersecurity: 1, phishing: 1, carding: 0 } }
+]
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -135,20 +147,18 @@ function EnhancedTableToolbar() {
 }
 
 export function Users() {
-  const [rows, setRows] = useState([])
+  const [userIdForDialog, setUserIdForDialog] = useState()
+  const [croppedRows, setCroppedRows] = useState([])
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('calories')
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [openDialog, setOpenDialog] = useState(false)
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc'
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
-  }
-
-  const handleClick = (event, id) => {
-    console.log('show dialog')
   }
 
   const handleChangePage = (event, newPage) => {
@@ -161,16 +171,36 @@ export function Users() {
   }
 
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - croppedRows.length) : 0
 
   const visibleRows = useMemo(
     () =>
-      stableSort(rows, getComparator(order, orderBy)).slice(
+      stableSort(croppedRows, getComparator(order, orderBy)).slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
     [order, orderBy, page, rowsPerPage]
   )
+
+  const handleClickOpenDailog = (event, id) => {
+    setUserIdForDialog(id)
+    setOpenDialog(true)
+  }
+
+  const handleCloseDailog = () => {
+    setUserIdForDialog()
+    setOpenDialog(false)
+  }
+
+  const parseObject = (obj) => {
+    for (const [key, value] of Object.entries(obj)) {
+      return (
+        <div>
+          `${key}: ${value}`
+        </div>
+      )
+    }
+  }
 
   useEffect(() => {
     async function fetchAllUsers() {
@@ -193,7 +223,7 @@ export function Users() {
             experience: user.experience
           }))
 
-          setRows(createdData)
+          setCroppedRows(createdData)
         } else {
           console.log('WRONG DATA')
         }
@@ -225,7 +255,7 @@ export function Users() {
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
-                rowCount={rows.length}
+                rowCount={croppedRows.length}
               />
               <TableBody>
                 {visibleRows.map((row, index) => {
@@ -233,7 +263,7 @@ export function Users() {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.id)}
+                      onClick={(event) => handleClickOpenDailog(event, row.id)}
                       tabIndex={-1}
                       key={row.id}
                       sx={{ cursor: 'pointer' }}
@@ -271,7 +301,7 @@ export function Users() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component='div'
-            count={rows.length}
+            count={croppedRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -279,6 +309,28 @@ export function Users() {
           />
         </Paper>
       </Container>
+      <Dialog open={openDialog} onClose={handleCloseDailog}>
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here.
+            We will send updates occasionally.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin='dense'
+            id='name'
+            label='Email Address'
+            type='email'
+            fullWidth
+            variant='standard'
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDailog}>Cancel</Button>
+          <Button onClick={handleCloseDailog}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }
