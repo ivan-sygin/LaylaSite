@@ -1,8 +1,12 @@
 import { Box, autocompleteClasses } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { HeaderMainPage } from '../MainPage'
+import { HeaderMainPage } from '../main_page/components/header'
 import { useEffect, useState } from 'react'
-import { ServerAdress, ServerAdress2 } from '../../components/ApiVavilin'
+import {
+  ServerAdress,
+  ServerAdress2,
+  ServerPhoto
+} from '../../components/ApiVavilin'
 
 const GradientBox = () => {
   return (
@@ -15,7 +19,43 @@ const GradientBox = () => {
     ></Box>
   )
 }
-const ImageAndTextBox = ({ user }) => {
+
+const ImageAndTextBox = ({ user, photo, setPhoto }) => {
+  const handleChangeImage = (e) => {
+    if (e.currentTarget.files[0]) return
+    let formData = new FormData()
+    formData.append('file', e.currentTarget.files[0])
+
+    fetch(ServerPhoto + '/uploadPhoto', {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+      },
+      body: formData
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        fetch(
+          ServerAdress2 +
+            '/users/edit?user_id=' +
+            user.id +
+            '&photo=' +
+            data.url,
+          {
+            mode: 'cors',
+            method: 'POST',
+            headers: {
+              Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+            }
+          }
+        )
+          .then((response) => response.json())
+          .then((data1) => {
+            setPhoto(data.url)
+          })
+      })
+  }
   const styleTextContainer = {
     position: { xs: 'relative', sm: 'relative' },
     top: { xs: -90, sm: 0 },
@@ -68,6 +108,7 @@ const ImageAndTextBox = ({ user }) => {
               zIndex={10}
             ></Box>
           </Box>
+
           <Box
             width={140}
             height={140}
@@ -75,15 +116,25 @@ const ImageAndTextBox = ({ user }) => {
             position={'absolute'}
             overflow={'hidden'}
           >
-            <img
-              width={'100%'}
-              height={'100%'}
-              src={
-                user?.photo ||
-                'https://sun9-14.userapi.com/impg/Xdv9rwUVcJEDHOwQMs_z12BLmOdj81gbMBchxg/gPIDNOe0YXk.jpg?size=1280x1280&quality=95&sign=55d35aa73db5e1f0d9ca39779fe6cf74&type=album'
-              }
-              style={{ objectFit: 'cover' }}
-              alt=''
+            <label htmlFor='imageImport'>
+              <img
+                width={'100%'}
+                height={'100%'}
+                src={
+                  photo ||
+                  'https://sun9-14.userapi.com/impg/Xdv9rwUVcJEDHOwQMs_z12BLmOdj81gbMBchxg/gPIDNOe0YXk.jpg?size=1280x1280&quality=95&sign=55d35aa73db5e1f0d9ca39779fe6cf74&type=album'
+                }
+                style={{ objectFit: 'cover' }}
+                alt=''
+              />
+            </label>
+            <input
+              type='file'
+              name='imageImport'
+              id='imageImport'
+              accept='image/*'
+              style={{ display: 'none' }}
+              onChange={(e) => handleChangeImage(e)}
             />
           </Box>
         </Box>
@@ -92,6 +143,7 @@ const ImageAndTextBox = ({ user }) => {
           paddingTop={'10px'}
           fontSize={36}
           fontWeight={1000}
+          textAlign={{ xs: 'center', sm: 'left' }}
           sx={{ paddingLeft: { xs: '0px', sm: '190px' } }}
         >
           {user?.first_name} {user?.last_name}
@@ -110,12 +162,16 @@ const ImageAndTextBox = ({ user }) => {
 }
 export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState()
+  const [photo, setPhoto] = useState()
 
   const FetchUserInfo = (id) => {
     fetch(ServerAdress2 + '/users/get?id=' + id)
       .then((response) => response.json())
       .then((data) => {
-        if (data.status) setUserInfo(data.user)
+        if (data.status) {
+          setUserInfo(data.user)
+          setPhoto(data.user.photo)
+        }
       })
   }
 
@@ -129,7 +185,7 @@ export default function ProfilePage() {
         <HeaderMainPage />
         <Box height={20} />
         <GradientBox />
-        <ImageAndTextBox user={userInfo} />
+        <ImageAndTextBox user={userInfo} photo={photo} setPhoto={setPhoto} />
         <Box
           bgcolor={'white'}
           borderRadius={'0px 0px 30px 30px'}
