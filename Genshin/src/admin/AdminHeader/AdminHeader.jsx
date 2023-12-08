@@ -11,9 +11,38 @@ import EmailIcon from '@mui/icons-material/Email'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import { useNavigate } from 'react-router-dom'
+import { ServerAdress2 } from '../../components/ApiVavilin'
+import { useEffect, useState } from 'react'
 
 export const AdminHeader = () => {
+  const [userPhoto, setUserPhoto] = useState()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    async function fetchUserPhoto() {
+      try {
+        const response = await fetch(
+          `${ServerAdress2}/users/get?id=${sessionStorage.getItem('id')}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+            }
+          }
+        )
+        console.log(sessionStorage.getItem('access_token'))
+        if (response.ok) {
+          const json = await response.json()
+          setUserPhoto(JSON.stringify(json.user?.photo))
+        } else {
+          console.log('WRONG DATA')
+        }
+      } catch (error) {
+        console.log('Ошибки сети или чё-то такое')
+      }
+    }
+    fetchUserPhoto()
+  }, [])
 
   return (
     <Box sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.15)' }}>
@@ -21,7 +50,7 @@ export const AdminHeader = () => {
         <div className='AdminHeader'>
           <Avatar
             alt='Admin'
-            src='https://sun9-59.userapi.com/impg/lc00dwrgbxu4BMGmjfFFTHiPLnqvtrrFRp1d8w/6nPlNlsd9cs.jpg?size=145x184&quality=96&sign=bc6fc388ef81a6ddc7653f5d51f1565b&type=album'
+            src={userPhoto}
             sx={{ bgcolor: deepOrange[500], width: '50px', height: '50px' }}
           />
           <Typography
@@ -60,6 +89,7 @@ export const AdminHeader = () => {
               color='inherit'
               onClick={() => {
                 sessionStorage.removeItem('access_token')
+                sessionStorage.removeItem('id')
                 navigate('/admin-login')
               }}
             >
