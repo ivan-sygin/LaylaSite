@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { FaUser, FaPlus } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
-import { ServerAdress } from '../../../components/ApiVavilin'
+import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { Link } from 'react-router-dom'
 export const HeaderMainPage = () => {
   const navigate = useNavigate()
+  const id = sessionStorage.getItem('id')
   const LoginButtons = () => {
     const [userInfo, setUserInfo] = useState()
-    const FetchUserData = () => {
-      fetch(ServerAdress + '/auth/users/me', {
+    const FetchUserData = (id) => {
+      fetch(ServerAdress2 + '/users/get?id=' + id, {
         mode: 'cors',
         method: 'GET',
         headers: {
@@ -20,19 +22,25 @@ export const HeaderMainPage = () => {
         })
     }
     useEffect(() => {
-      if (sessionStorage.getItem('access_token')) FetchUserData()
+      if (sessionStorage.getItem('access_token')) FetchUserData(id)
     }, [])
     if (userInfo)
       return (
         <div className='login_buttonsMainPage'>
-          <div
+          <Link
+            to={'/profile/' + userInfo.user.id}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
             className='loginbutton_buttonsMainPage'
             onClick={() => {
               navigate('/profile/' + userInfo.user.id)
             }}
           >
             Привет, {userInfo && userInfo.user.first_name}
-          </div>
+          </Link>
           <div
             className='signinbutton_buttonsMainPage'
             onClick={() => {
@@ -47,18 +55,20 @@ export const HeaderMainPage = () => {
     else
       return (
         <div className='login_buttonsMainPage'>
-          <div
+          <Link
+            to='/login'
             className='loginbutton_buttonsMainPage'
             onClick={() => navigate('/login')}
           >
             Войти
-          </div>
-          <div
+          </Link>
+          <Link
+            to='/register'
             className='signinbutton_buttonsMainPage'
             onClick={() => navigate('/register')}
           >
             Регистрация
-          </div>
+          </Link>
         </div>
       )
   }
@@ -73,12 +83,13 @@ export const HeaderMainPage = () => {
         </div>
       </div>
       <div className='buttonsMainPage'>
-        <div
+        <Link
+          to='/'
           className='button_centerMainPage activeMainPage'
           onClick={() => navigate('/')}
         >
           Главная
-        </div>
+        </Link>
         <div className='button_centerMainPage'>Поиск</div>
         <div className='button_centerMainPage'>Сообщение</div>
       </div>

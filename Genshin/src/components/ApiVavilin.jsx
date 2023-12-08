@@ -3,5 +3,5 @@
 export const TestApi = true
 
 export const ServerAdress = 'http://26.65.125.199:8000'
-export const ServerAdress2 = 'http://26.65.125.199:8002'
+export const ServerAdress2 = 'http://26.65.125.199:8004'
 export const ServerPhoto = 'http://26.65.125.199:8001'

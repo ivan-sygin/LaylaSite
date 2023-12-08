@@ -35,41 +35,42 @@ export const AdvisesToUser = () => {
   useEffect(() => {
     if (TOKEN) FetchAdvises()
   }, [])
-
-  return (
-    <Box
-      width={'90%'}
-      margin={'auto'}
-      marginTop={'20px'}
-      borderRadius={'20px'}
-      border={0}
-      boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.2);'}
-    >
-      <Box paddingX={'20px'} paddingY={'20px'}>
-        <Box
-          fontSize={'36px'}
-          fontFamily={'RussoOne'}
-          color={'var(--banner-color1)'}
-          display={'flex'}
-          flexDirection={'row'}
-        >
-          <FaInfo />
-          {' Рекомендац'}
-          <Box color={'var(--banner-color2)'}>{'ИИ '}</Box>
-        </Box>
-        <Box paddingLeft={'5px'}>
-          <Box fontSize={'24px'} fontFamily={'Inter'} fontWeight={500}>
-            {advise.title}
-          </Box>
+  if (advise)
+    return (
+      <Box
+        width={'90%'}
+        margin={'auto'}
+        marginTop={'20px'}
+        borderRadius={'20px'}
+        border={1}
+        borderColor={'var(--banner-color1)'}
+        boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.1);'}
+      >
+        <Box paddingX={'20px'} paddingY={'20px'}>
           <Box
-            fontSize={'18px'}
-            fontFamily={'Inter'}
-            fontWeight={300}
-            marginTop={'10px'}
-            dangerouslySetInnerHTML={advise.content}
-          ></Box>
+            fontSize={'36px'}
+            fontFamily={'RussoOne'}
+            color={'var(--banner-color1)'}
+            display={'flex'}
+            flexDirection={'row'}
+          >
+            <FaInfo />
+            {' Рекомендац'}
+            <Box color={'var(--banner-color2)'}>{'ИИ '}</Box>
+          </Box>
+          <Box paddingLeft={'5px'}>
+            <Box fontSize={'24px'} fontFamily={'Inter'} fontWeight={500}>
+              {advise.title}
+            </Box>
+            <Box
+              fontSize={'18px'}
+              fontFamily={'Inter'}
+              fontWeight={300}
+              marginTop={'10px'}
+              dangerouslySetInnerHTML={advise.content}
+            ></Box>
+          </Box>
         </Box>
       </Box>
-    </Box>
-  )
+    )
 }

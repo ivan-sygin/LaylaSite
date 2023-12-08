@@ -10,6 +10,7 @@ import { OrdersPage } from './admin/AdminPageContent/contentComponents/Orders'
 import { Customers } from './admin/AdminPageContent/contentComponents/Customers'
 import { SignIn } from './admin/AdminLogIn/AdminLogIn'
 import ProfilePage from './pages/profile/ProfilePage'
+import { TestPage } from './pages/tests/TestPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile/:id' element={<ProfilePage />} />
+        <Route path='/test/:id_test' element={<TestPage />} />
 
         <Route path='/admin-login' element={<SignIn />}></Route>
         <Route path='/admin-panel' element={<MyAdmin />}>

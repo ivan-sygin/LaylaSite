@@ -5,6 +5,14 @@
     var(--banner-color2) 100%
   );
 }
+body {
+  margin: 0;
+}
+a {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
 b {
   color: var(--banner-color1);
 }
@@ -84,9 +92,13 @@ body {
   flex-direction: row;
   gap: 10px;
 }
+.login_buttonsMainPage div {
+  cursor: pointer;
+}
 .loginbutton_buttonsMainPage {
   display: flex;
   justify-content: center;
+  cursor: pointer;
   align-items: center;
   padding: 5px 20px;
   border: 1px solid;

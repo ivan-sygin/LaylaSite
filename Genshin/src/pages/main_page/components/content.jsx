@@ -3,6 +3,7 @@ import { Bubble } from './bubble'
 import { useState, useEffect } from 'react'
 import { ChangeColor } from '../../../components/colors'
 import { FaArrowLeft, FaArrowRight, FaSearch, FaTimes } from 'react-icons/fa'
+import { AdvisesToUser } from './advise_user'
 export const ContentMainPage = () => {
   const [character, setCharacter] = useState('Layla')
   const SetCharacter = (character) => {
@@ -154,7 +155,10 @@ export const ContentMainPage = () => {
             'bannerContainerMainPage ' + character + 'bannerContainerMainPage'
           }
         >
-          <div className='bubbles'>
+          <div
+            className='bubbles'
+            style={{ boxShadow: '3px 4px 8px 0px rgba(34, 60, 80, 0.1)' }}
+          >
             <Bubble></Bubble>
             <Bubble></Bubble>
             <Bubble></Bubble>
@@ -177,6 +181,8 @@ export const ContentMainPage = () => {
           <FaArrowRight />
         </div>
       </div>
+      <AdvisesToUser />
+      <BottomInfo />
     </>
   )
 }

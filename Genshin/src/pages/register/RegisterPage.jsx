@@ -34,6 +34,7 @@ export default function RegisterPage() {
         console.log(data)
         if (data.status) {
           sessionStorage.setItem('access_token', data.access_token)
+          sessionStorage.setItem('id', data.id)
           navigate('/')
         }
       })
