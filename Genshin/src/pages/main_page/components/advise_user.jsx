@@ -5,9 +5,11 @@ import { Box } from '@mui/material'
 import { FaAdversal, FaInfo } from 'react-icons/fa'
 
 const default_advise = {
-  title: 'Это рыба-текст',
-  content:
-    'Данные текст вы видите, пока Мишина апишка мне не вернёт нормальный Вам совет'
+  title: 'Фишинг',
+  content: {
+    __html:
+      'Если вы все же попали на фишинговый сайт и ввели свои данные, сразу же смените пароли для <b>всех</b> учетных записей, которые могли быть скомпрометированы.'
+  }
 }
 
 export const AdvisesToUser = () => {
@@ -40,7 +42,8 @@ export const AdvisesToUser = () => {
       margin={'auto'}
       marginTop={'20px'}
       borderRadius={'20px'}
-      border={1}
+      border={0}
+      boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.2);'}
     >
       <Box paddingX={'20px'} paddingY={'20px'}>
         <Box
@@ -54,11 +57,17 @@ export const AdvisesToUser = () => {
           {' Рекомендац'}
           <Box color={'var(--banner-color2)'}>{'ИИ '}</Box>
         </Box>
-        <Box fontSize={'24px'} fontFamily={'Arial Black'}>
-          {advise.title}
-        </Box>
-        <Box fontSize={'18px'} fontFamily={'Arial'} marginTop={'10px'}>
-          {advise.content}
+        <Box paddingLeft={'5px'}>
+          <Box fontSize={'24px'} fontFamily={'Inter'} fontWeight={500}>
+            {advise.title}
+          </Box>
+          <Box
+            fontSize={'18px'}
+            fontFamily={'Inter'}
+            fontWeight={300}
+            marginTop={'10px'}
+            dangerouslySetInnerHTML={advise.content}
+          ></Box>
         </Box>
       </Box>
     </Box>

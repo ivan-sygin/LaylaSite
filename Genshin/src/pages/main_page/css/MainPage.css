@@ -5,6 +5,9 @@
     var(--banner-color2) 100%
   );
 }
+b {
+  color: var(--banner-color1);
+}
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -16,6 +19,10 @@
 @font-face {
   font-family: 'RussoOne';
   src: url('fonts/RussoOne.ttf');
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter.ttf');
 }
 
 body {
