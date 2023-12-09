@@ -1,7 +1,5 @@
-import { Container, Grid, Paper, Typography } from '@mui/material'
-import Chart from './Chart'
-import Deposits from './Deposits'
-import { AllOrders } from './Dangers'
+import { Container, Typography } from '@mui/material'
+import { BarChart } from '@mui/x-charts/BarChart'
 
 export const Dashboard = () => {
   return (
@@ -10,37 +8,30 @@ export const Dashboard = () => {
         <Typography variant='h4' gutterBottom>
           Статистика тем
         </Typography>
-        {/* <Grid container spacing={3}>
-          <Grid item xs={12} md={8} lg={9}>
-            <Paper
-              sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                height: 240
-              }}
-            >
-              <Chart />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={4} lg={3}>
-            <Paper
-              sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                height: 240
-              }}
-            >
-              <Deposits />
-            </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              <AllOrders />
-            </Paper>
-          </Grid>
-        </Grid> */}
+        <BarChart
+          xAxis={[
+            {
+              id: 'barCategories',
+              data: [
+                'Финансовые нарушения',
+                'Защита персональных данных',
+                'Защита личных цифровых устройств',
+                'Правила работы в сети Интернет'
+              ],
+              scaleType: 'band'
+            }
+          ]}
+          series={[
+            {
+              data: [0.2, 0.9, 0.85, 0.56]
+            }
+          ]}
+          width={700}
+          height={300}
+        />
+        <Typography variant='h7' gutterBottom>
+          (чем меньше значение, тем меньше ошибок допускают по теме)
+        </Typography>
       </Container>
     </div>
   )
