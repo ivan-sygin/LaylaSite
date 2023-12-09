@@ -48,6 +48,7 @@ export const AdvisesToUser = () => {
         marginTop={'20px'}
         borderRadius={'20px'}
         border={1}
+        bgcolor={'white'}
         borderColor={'var(--banner-color1)'}
         boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.1);'}
       >

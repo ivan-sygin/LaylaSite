@@ -22,7 +22,9 @@ const LectionBody = ({ text }) => {
     <Box
       fontSize={20}
       fontFamily={'Inter'}
+      margin={'auto'}
       marginTop={'10px'}
+      width={'80%'}
       dangerouslySetInnerHTML={inner}
     ></Box>
   )
@@ -82,7 +84,7 @@ const CommentBlock = ({ comment }) => {
 const LectionComments = ({ comments }) => {
   return (
     <>
-      <Box paddingBottom={'40px'}>
+      <Box paddingBottom={'40px'} width={'80%'} margin={'auto'}>
         <Box fontSize={45} marginTop={3}>
           Комментарии
         </Box>
@@ -227,8 +229,14 @@ export const MaterialPageNoId = () => {
                 minWidth={250}
                 minHeight={50}
                 paddingTop={'20px'}
+                padding={10}
+                border={1}
+                paddingX={3}
                 boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.1);'}
                 borderRadius={'10px'}
+                fontFamily={'Inter'}
+                fontSize={45}
+                fontWeight={1000}
                 onClick={() => {
                   navigate('/materials/' + _.id)
                 }}

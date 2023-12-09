@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { ChangeColor } from '../../../components/colors'
 import { FaArrowLeft, FaArrowRight, FaSearch, FaTimes } from 'react-icons/fa'
 import { AdvisesToUser } from './advise_user'
+import { Box } from '@mui/material'
 export const ContentMainPage = () => {
   const [character, setCharacter] = useState('Layla')
   const SetCharacter = (character) => {
@@ -182,6 +183,82 @@ export const ContentMainPage = () => {
         </div>
       </div>
       <AdvisesToUser />
+      <AboutUs />
+      <Box minHeight='100px'></Box>
+    </>
+  )
+}
+const AboutUs = () => {
+  return (
+    <>
+      <Box width={'90%'} margin={'auto'} marginTop={'40px'}>
+        <Box fontSize={48}>О нас</Box>
+        <Box display={'flex'} flexDirection={'row'} gap={'10px'}>
+          <Box
+            minHeight={'300px'}
+            bgcolor={'white'}
+            flex={75}
+            borderRadius={'10px 0 0 10px'}
+            border={1}
+            borderColor={'var(--banner-color2)'}
+          >
+            <Box
+              paddingTop={'30px'}
+              paddingLeft={'40px'}
+              fontSize={56}
+              fontWeight={1000}
+              fontFamily={'inter'}
+              color={'black'}
+            >
+              <Box display={'flex'} flexDirection={'row'}>
+                <Box
+                  color={'white'}
+                  sx={{
+                    textShadow:
+                      '-1px -1px 0 var(--banner-color1), 1px -1px 0 var(--banner-color1), -1px 1px 0 var(--banner-color1), 1px 1px 0 var(--banner-color1);'
+                  }}
+                >
+                  E-not
+                </Box>
+                <Box
+                  sx={{
+                    textShadow:
+                      '-1px -1px 0 var(--banner-color1), 1px -1px 0 var(--banner-color1), -1px 1px 0 var(--banner-color1), 1px 1px 0 var(--banner-color1);'
+                  }}
+                  color={'white'}
+                >
+                  GPT
+                </Box>
+              </Box>
+            </Box>
+            <Box
+              paddingTop={'30px'}
+              paddingLeft={'40px'}
+              paddingRight={'20px'}
+              fontSize={24}
+              fontWeight={300}
+              fontFamily={'inter'}
+              color={'black'}
+            >
+              Мы - команда Донецкой Народной Республики по спортивному
+              программированию. Надеемся и верим в нашу победу!
+            </Box>
+          </Box>
+          <Box
+            minHeight={'300px'}
+            bgcolor={'white'}
+            flex={25}
+            borderRadius={'0 10px 10px 0'}
+            border={1}
+            borderColor={'var(--banner-color2)'}
+          >
+            <img
+              src='http://26.65.125.199:8001/photos/c0172b3f6cd73f9eb478ec65cfe4dd6543855546.png'
+              alt=''
+            />
+          </Box>
+        </Box>
+      </Box>
     </>
   )
 }
