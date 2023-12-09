@@ -14,6 +14,8 @@ import { TestPage } from './pages/tests/TestPage'
 import { Lections } from './admin/AdminPageContent/contentComponents/Lection'
 import { MaterialPage, MaterialPageNoId } from './pages/materials/materials'
 import { PaymentPage } from './pages/payment/payment'
+import { CorporationPage } from './pages/corporation/CorporationPage'
+import { AiTasksPage } from './admin/AdminPageContent/contentComponents/AiTasksPage'
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
         <Route path='/test' element={<TestPage />} />
         <Route path='/materials' element={<MaterialPageNoId />} />
         <Route path='/payment' element={<PaymentPage />} />
+        <Route path='/corporation' element={<CorporationPage />} />
 
         <Route path='/materials/:id_page' element={<MaterialPage />}>
           <Route path='' element={<Dashboard />}></Route>
@@ -38,6 +41,7 @@ function App() {
           <Route path='dangers' element={<DangersPage />}></Route>
           <Route path='users' element={<Users />}></Route>
           <Route path='lections' element={<Lections />}></Route>
+          <Route path='AI' element={<AiTasksPage />}></Route>
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

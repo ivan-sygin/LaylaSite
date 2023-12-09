@@ -9,6 +9,7 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'
 import CoronavirusOutlinedIcon from '@mui/icons-material/CoronavirusOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined'
 import PlayLessonIcon from '@mui/icons-material/PlayLesson'
 import { useNavigate } from 'react-router-dom'
 
@@ -57,6 +58,14 @@ export const AdminSideMenu = () => {
                 <PlayLessonIcon />
               </ListItemIcon>
               <ListItemText primary='Лекции' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => navigate('/admin-panel/AI')}>
+              <ListItemIcon>
+                <SmartToyOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary='Помощь ИИ' />
             </ListItemButton>
           </ListItem>
         </List>

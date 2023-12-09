@@ -81,6 +81,7 @@ export const Lections = () => {
           </Box>
         </Box>
       </Paper>
+
       <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseAlert}>
         <Alert
           onClose={handleCloseAlert}
