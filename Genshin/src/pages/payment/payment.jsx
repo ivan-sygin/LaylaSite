@@ -52,7 +52,7 @@ export const PaymentPage = () => {
           bgcolor={'white'}
         >
           <Box fontFamily={'inter'} fontSize={48}>
-            Кайфовая оплата
+            Оплата подписки
           </Box>
           <Box paddingTop={3}>
             <DropDown age={age} handleChange={handleChange} />

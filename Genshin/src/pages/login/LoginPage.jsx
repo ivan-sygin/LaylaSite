@@ -90,7 +90,7 @@ export default function LoginPage() {
                 navigate('/register')
               }}
             >
-              Нет аккаунта? Ну ты и лох
+              Нет аккаунта? Создать!
             </Box>
           </Box>
         </>
