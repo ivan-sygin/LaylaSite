@@ -12,7 +12,7 @@ import { SignIn } from './admin/AdminLogIn/AdminLogIn'
 import ProfilePage from './pages/profile/ProfilePage'
 import { TestPage } from './pages/tests/TestPage'
 import { Lections } from './admin/AdminPageContent/contentComponents/Lection'
-import { MaterialPage } from './pages/materials/materials'
+import { MaterialPage, MaterialPageNoId } from './pages/materials/materials'
 
 function App() {
   return (
@@ -23,6 +23,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile/:id' element={<ProfilePage />} />
         <Route path='/test/:id_test' element={<TestPage />} />
+        <Route path='/materials' element={<MaterialPageNoId />} />
+
         <Route path='/materials/:id_page' element={<MaterialPage />}>
           <Route path='' element={<Dashboard />}></Route>
         </Route>

@@ -19,7 +19,110 @@ const GradientBox = () => {
     ></Box>
   )
 }
-
+const BannerAchivement = ({ data, sDA }) => {
+  if (data.draw)
+    return (
+      <Box
+        position={'absolute'}
+        zIndex={30}
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        width={'100vw'}
+        height={'100vh'}
+        bgcolor={'rgba(245,245,245,0.7)'}
+        onClick={() => {
+          sDA({ draw: false, item: null })
+        }}
+      >
+        <Box
+          minHeight={500}
+          minWidth={500}
+          bgcolor={'white'}
+          borderRadius={20}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+          flexDirection={'column'}
+        >
+          <Box
+            padding={5}
+            display={'flex'}
+            flexDirection={'column'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            gap={'40px'}
+          >
+            <Box maxWidth={200} maxHeight={200}>
+              <img
+                src={data.item.photo}
+                alt=''
+                width={'100%'}
+                height={'100%'}
+              />
+            </Box>
+            <Box fontSize={24} fontWeight={800}>
+              {data.item.title}
+            </Box>
+            <Box fontSize={24} fontWeight={400} maxWidth={400}>
+              {data.item.desc}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    )
+}
+const Achivement = (item, sAD) => {
+  return (
+    <Box>
+      <Box
+        width={80}
+        height={80}
+        onClick={() => {
+          sAD({ draw: true, item: item })
+        }}
+      >
+        <img src={item.photo} alt='' width={'100%'} height={'auto'} />
+      </Box>
+    </Box>
+  )
+}
+const AchivementsBlock = ({ achivements, sAD }) => {
+  if (!achivements)
+    achivements = [
+      {
+        title: 'За проверку на почту',
+        desc: 'Вы отлично прошли фишинг-проверку на почту, так держать!',
+        photo:
+          'http://26.65.125.199:8001/photos/1552110d9526da3983f06c69c60f3550044412f1.png'
+      },
+      {
+        title: 'За тесты',
+        desc: 'Вы прошли тест без ошибок, так держать!',
+        photo:
+          'http://26.65.125.199:8001/photos/100514db12c195ad577e2e3e9153a61168914c30.png'
+      }
+    ]
+  return (
+    <>
+      <Box bgcolor={'white'} paddingX={4}>
+        <Box fontFamily={'inter'} fontSize={32}>
+          Достижения
+        </Box>
+        <Box
+          display={'flex'}
+          flexDirection={'row'}
+          justifyContent={'center'}
+          gap={'20px'}
+        >
+          {achivements.map((_, i) => {
+            return Achivement(_, sAD)
+          })}
+        </Box>
+      </Box>
+    </>
+  )
+}
 const ImageAndTextBox = ({ user, photo, setPhoto }) => {
   const handleChangeImage = (e) => {
     if (!e.currentTarget.files[0]) return
@@ -170,16 +273,17 @@ const LevelComponent = ({ userInfo }) => {
         </Box>
         <Box
           width={'100%'}
-          height={'3px'}
+          height={'6px'}
           bgcolor={'gray'}
-          borderRadius={'2px'}
+          borderRadius={'3px'}
         >
           <Box
             width={`${
               userInfo.experience - 100 * Math.floor(userInfo.experience / 100)
             }%`}
             bgcolor={'yellow'}
-            height={'3px'}
+            borderRadius={'3px'}
+            height={'6px'}
           ></Box>
         </Box>
         <Box textAlign={'center'} fontSize={8} marginTop={'2px'}>
@@ -193,7 +297,10 @@ const LevelComponent = ({ userInfo }) => {
 export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState()
   const [photo, setPhoto] = useState()
-
+  const [drawAchivement, setDrawAchivement] = useState({
+    draw: false,
+    item: null
+  })
   const FetchUserInfo = (id) => {
     fetch(ServerAdress2 + '/users/get?id=' + id)
       .then((response) => response.json())
@@ -211,12 +318,17 @@ export default function ProfilePage() {
   }, [])
   return (
     <>
+      <BannerAchivement data={drawAchivement} sDA={setDrawAchivement} />
       <Box maxWidth={1200} margin={'auto'}>
         <HeaderMainPage />
         <Box height={20} />
         <GradientBox />
         <ImageAndTextBox user={userInfo} photo={photo} setPhoto={setPhoto} />
         <LevelComponent userInfo={userInfo} />
+        <AchivementsBlock
+          achivements={userInfo?.achivements}
+          sAD={setDrawAchivement}
+        />
         <Box
           bgcolor={'white'}
           borderRadius={'0px 0px 30px 30px'}
