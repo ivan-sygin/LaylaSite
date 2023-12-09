@@ -2,7 +2,10 @@ import { Box, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ServerAdress2 } from '../../components/ApiVavilin'
-let finished = []
+import { TOKEN } from '../../components/TokenController'
+let finished = 0
+let start_time = +new Date()
+let end_time = +new Date()
 export const TestPage = () => {
   const { id_test } = useParams()
 
@@ -14,7 +17,6 @@ export const TestPage = () => {
     fetch(ServerAdress2 + `/tests/getById?test_id=${id_test}`)
       .then((response) => response.json())
       .then((json) => {
-        finished = Array(json.test.questions.length).fill(0)
         setTestFromApi(json.test)
       })
   }
@@ -24,40 +26,23 @@ export const TestPage = () => {
   if (testFromApi)
     return (
       <Box width={'90%'} margin={'auto'} marginTop={10}>
-        <div className='white_divs'>
-          <HeadOfComponent radius={20} height={40} />
-          <Title name={'Комплексное тестирование'} />
-          <TestForm
-            test={testFromApi}
-            id_question={currStage}
-            sCS={setCurrStage}
-          />
-          <BottomCircles
-            lenght={Object.keys(testFromApi?.questions).length}
-            current={currStage}
-            sCS={setCurrStage}
-          />
-          <EndOfComponent radius={20} height={40} />
-        </div>
+        <HeadOfComponent radius={20} height={40} />
+        <Title name={'Комплексное тестирование'} />
+        <TestForm
+          test={testFromApi}
+          id_question={currStage}
+          sCS={setCurrStage}
+        />
+        <BottomCircles
+          lenght={Object.keys(testFromApi?.questions).length}
+          current={currStage}
+          sCS={setCurrStage}
+        />
+        <EndOfComponent radius={20} height={40} />
       </Box>
     )
 }
-const VariantAnswer = ({ id, answer, currStage }) => {
-  if (finished[currStage] == id)
-    return (
-      <Box fontSize={18} padding={2}>
-        <input
-          type='radio'
-          id={'radio' + id}
-          name='variant_answer'
-          defaultChecked={true}
-          onClick={(e) => {
-            finished[currStage] = id
-          }}
-        ></input>
-        <label for={'radio' + id}>{answer.answer}</label>
-      </Box>
-    )
+const VariantAnswer = ({ id, answer, selected, setSelected }) => {
   return (
     <Box fontSize={18} padding={2}>
       <input
@@ -66,39 +51,71 @@ const VariantAnswer = ({ id, answer, currStage }) => {
         name='variant_answer'
         defaultChecked={false}
         onClick={(e) => {
-          finished[currStage] = id
+          if (selected != id) setSelected(id)
         }}
       ></input>
       <label for={'radio' + id}>{answer.answer}</label>
     </Box>
   )
 }
-const FormTask = ({ title, test, currStage, setCurrStage }) => {
-  return (
-    <Box>
-      <Box fontSize={24} fontWeight={700} marginBottom={1}>
-        {title}
-      </Box>
-      <Box
-        fontSize={24}
-        fontWeight={700}
-        component={'form'}
-        marginY={'10px'}
-        minHeight={300}
-      >
-        {test.map((_, i) => {
-          return <VariantAnswer id={i} answer={_} currStage={currStage} />
-        })}
-      </Box>
-      <Button
-        onClick={() => {
-          setCurrStage(currStage + 1)
-        }}
-      >
-        Следующий вопрос
-      </Button>
-    </Box>
+const sendChoosedVariant = (q_id, a_id, a_time) => {
+  fetch(
+    ServerAdress2 +
+      '/tests/checkAnswer?question_id=' +
+      q_id +
+      '&answer_id=' +
+      a_id +
+      '&answer_time=' +
+      a_time,
+    { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN } }
   )
+    .then((r) => r.json())
+    .then((json) => {
+      console.log(json)
+    })
+}
+const FormTask = ({ title, test, currStage, setCurrStage }) => {
+  const [selected, setSelected] = useState(0)
+  if (test)
+    return (
+      <Box>
+        <Box fontSize={24} fontWeight={700} marginBottom={1}>
+          {title}
+        </Box>
+        <Box
+          fontSize={24}
+          fontWeight={700}
+          component={'form'}
+          marginY={'10px'}
+          minHeight={300}
+        >
+          {test.questions[currStage].answers.map((_, i) => {
+            return (
+              <VariantAnswer
+                id={i}
+                answer={_}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            )
+          })}
+        </Box>
+        <Button
+          onClick={() => {
+            end_time = +new Date()
+            sendChoosedVariant(
+              test.questions[currStage].id,
+              test.questions[currStage].answers[selected].id,
+              Math.floor((end_time - start_time) / 1000)
+            )
+            start_time = +new Date()
+            setCurrStage(currStage + 1)
+          }}
+        >
+          Следующий вопрос
+        </Button>
+      </Box>
+    )
 }
 
 const TestForm = ({ test, id_question, sCS }) => {
@@ -114,7 +131,7 @@ const TestForm = ({ test, id_question, sCS }) => {
       >
         <FormTask
           title={test.questions[id_question].text_question}
-          test={test.questions[id_question].answers}
+          test={test}
           currStage={id_question}
           setCurrStage={sCS}
         />
@@ -178,10 +195,6 @@ const Circles = ({ count, selected, sCS }) => {
           bgcolor={'gray'}
           height={10}
           width={10}
-          sx={{ cursor: 'pointer' }}
-          onClick={() => {
-            sCS(i)
-          }}
         ></Box>
       )
     })

@@ -88,7 +88,7 @@ const LectionComments = ({ comments }) => {
         </Box>
         <Box
           marginTop={3}
-          minHeight={200}
+          minHeight={10}
           display={'flex'}
           flexDirection={'column'}
           gap={'5px'}
@@ -110,7 +110,7 @@ const handleClick = (id, fetchData) => {
   fetch(ServerAdress2 + '/topics/sendComment', {
     method: 'POST',
     headers: {
-      Authorization: 'Bearer ' + TOKEN,
+      Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(json)
@@ -174,7 +174,7 @@ export const MaterialPage = () => {
           }
           return 0
         }
-        json.topic.comments.sort(compare)
+        json.topic?.comments.sort(compare)
         setData(json.topic)
       })
   }
@@ -191,4 +191,54 @@ export const MaterialPage = () => {
       <WriteCommentSection id={id_page} fetchData={fetchData} />
     </Box>
   )
+}
+
+export const MaterialPageNoId = () => {
+  let navigate = useNavigate()
+  const [data, setData] = useState()
+
+  const fetchData = () => {
+    fetch(ServerAdress2 + '/topics/getAll')
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json.topics)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+  if (data)
+    return (
+      <Box width={'90%'} margin={'auto'}>
+        <HeaderMainPage />
+        <Box
+          paddingTop={'40px'}
+          display={'flex'}
+          flexDirection={'row'}
+          flexWrap={'wrap'}
+          justifyContent={'center'}
+          alignItems={'center'}
+          gap='20px'
+        >
+          {data.map((_) => {
+            return (
+              <Box
+                minWidth={250}
+                minHeight={50}
+                paddingTop={'20px'}
+                boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.1);'}
+                borderRadius={'10px'}
+                onClick={() => {
+                  navigate('/materials/' + _.id)
+                }}
+                textAlign={'center'}
+              >
+                {_.title}
+              </Box>
+            )
+          })}
+        </Box>
+      </Box>
+    )
 }

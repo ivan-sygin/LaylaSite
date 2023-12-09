@@ -19,10 +19,11 @@ export const Lections = () => {
   const handleClick = () => {
     const name = document.getElementById('name_lection').value
     const text = document.getElementById('text_lection').value
+    console.log(sessionStorage.getItem('access_token'))
     fetch(ServerAdress2 + '/topics/create', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + TOKEN,
+        Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ title: name, text: text })

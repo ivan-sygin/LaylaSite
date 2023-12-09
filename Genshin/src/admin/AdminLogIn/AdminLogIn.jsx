@@ -32,6 +32,7 @@ export const SignIn = () => {
 
       if (response.ok) {
         const json = await response.json()
+        console.log(json.access_token)
         sessionStorage.setItem('access_token', json.access_token)
         sessionStorage.setItem('id', json.id)
         navigate('/admin-panel')
