@@ -6,7 +6,7 @@ export const Dashboard = () => {
     <div>
       <Container maxWidth='lg' sx={{ mt: 1 }}>
         <Typography variant='h4' gutterBottom>
-          Статистика тем
+          Общая статистика
         </Typography>
         <BarChart
           xAxis={[

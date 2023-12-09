@@ -310,25 +310,25 @@ export function Users() {
         </Paper>
       </Container>
       <Dialog open={openDialog} onClose={handleCloseDailog}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Подробности о пользователе</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            Пожалуйста, введите пароль своего аккаунта, для подтверждения, что
+            вы администратор
           </DialogContentText>
           <TextField
             autoFocus
             margin='dense'
             id='name'
-            label='Email Address'
-            type='email'
+            label='Пароль'
+            type='password'
             fullWidth
             variant='standard'
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDailog}>Cancel</Button>
-          <Button onClick={handleCloseDailog}>Subscribe</Button>
+          <Button onClick={handleCloseDailog}>Отменить</Button>
+          <Button onClick={handleCloseDailog}>Продолжить</Button>
         </DialogActions>
       </Dialog>
     </div>

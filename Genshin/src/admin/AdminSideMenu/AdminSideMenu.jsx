@@ -25,7 +25,7 @@ export const AdminSideMenu = () => {
               <ListItemIcon>
                 <DashboardOutlinedIcon />
               </ListItemIcon>
-              <ListItemText primary='Статистика тем' />
+              <ListItemText primary='Общая статистика' />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
