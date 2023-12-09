@@ -1,12 +1,9 @@
 import { Box } from '@mui/material'
 import { HeaderMainPage } from '../main_page/components/header'
-import { LectionComments1, TextLection1 } from './fishtext'
-import { flexbox } from '@mui/system'
 import { FaArrowRight } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import { ServerAdress2 } from '../../components/ApiVavilin'
-import { TOKEN } from '../../components/TokenController'
+import { ServerAdress2 } from '../../components/Api'
 
 const LectionHeader = ({ title }) => {
   return (
@@ -126,7 +123,6 @@ const handleClick = (id, fetchData) => {
 }
 
 const WriteCommentSection = ({ id, fetchData }) => {
-  let navigate = useNavigate()
   return (
     <Box paddingBottom={'50px'} display={'flex'} flexDirection={'row'}>
       <Box

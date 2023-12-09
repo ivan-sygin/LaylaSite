@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { TOKEN } from '../../../components/TokenController'
-import { ServerAdress, ServerAdress2 } from '../../../components/ApiVavilin'
+import { ServerAdress2 } from '../../../components/Api'
 import { Box, CircularProgress } from '@mui/material'
-import { FaAdversal, FaInfo } from 'react-icons/fa'
+import { FaInfo } from 'react-icons/fa'
 
 const default_advise = {
   title: 'Фишинг',
@@ -14,7 +14,7 @@ const default_advise = {
 
 export const AdvisesToUser = () => {
   const [advise, setAdvise] = useState('')
-  const FetchAdvises = (token) => {
+  const FetchAdvises = () => {
     fetch(ServerAdress2 + '/tests/getMainRecommend', {
       headers: {
         Authorization: 'Bearer ' + TOKEN()

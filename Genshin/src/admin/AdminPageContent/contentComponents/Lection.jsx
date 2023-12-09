@@ -7,8 +7,7 @@ import {
   Snackbar,
   Typography
 } from '@mui/material'
-import { ServerAdress2 } from '../../../components/ApiVavilin'
-import { TOKEN } from '../../../components/TokenController'
+import { ServerAdress2 } from '../../../components/Api'
 import { useState } from 'react'
 
 export const Lections = () => {

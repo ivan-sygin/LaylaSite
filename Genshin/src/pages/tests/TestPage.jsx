@@ -1,17 +1,12 @@
 import { Box, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { ServerAdress2 } from '../../components/ApiVavilin'
+import { ServerAdress2 } from '../../components/Api'
 import { TOKEN } from '../../components/TokenController'
-let finished = 0
 let start_time = +new Date()
 let end_time = +new Date()
 export const TestPage = () => {
-  const { id_test } = useParams()
-
   const [testFromApi, setTestFromApi] = useState()
   const [currStage, setCurrStage] = useState(0)
-  const [countStages, setCountStages] = useState(0)
 
   const fetchTestData = () => {
     let test = []
@@ -117,7 +112,7 @@ const VariantAnswer = ({ id, answer, selected, setSelected }) => {
           if (selected != id) setSelected(id)
         }}
       ></input>
-      <label for={'radio' + id}>{answer.answer}</label>
+      <label htmlFor={'radio' + id}>{answer.answer}</label>
     </Box>
   )
 }

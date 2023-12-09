@@ -24,12 +24,12 @@ import PropTypes from 'prop-types'
 import { alpha } from '@mui/material/styles'
 import { visuallyHidden } from '@mui/utils'
 import { useEffect, useMemo, useState } from 'react'
-import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { ServerAdress2 } from '../../../components/Api'
 
-const usersTests = [
-  { id: 6, themes: { cybersecurity: 0, phishing: 1, carding: 0 } },
-  { id: 7, themes: { cybersecurity: 1, phishing: 1, carding: 0 } }
-]
+// const usersTests = [
+//   { id: 6, themes: { cybersecurity: 0, phishing: 1, carding: 0 } },
+//   { id: 7, themes: { cybersecurity: 1, phishing: 1, carding: 0 } }
+// ]
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -192,15 +192,15 @@ export function Users() {
     setOpenDialog(false)
   }
 
-  const parseObject = (obj) => {
-    for (const [key, value] of Object.entries(obj)) {
-      return (
-        <div>
-          `${key}: ${value}`
-        </div>
-      )
-    }
-  }
+  // const parseObject = (obj) => {
+  //   for (const [key, value] of Object.entries(obj)) {
+  //     return (
+  //       <div>
+  //         `${key}: ${value}`
+  //       </div>
+  //     )
+  //   }
+  // }
 
   useEffect(() => {
     async function fetchAllUsers() {

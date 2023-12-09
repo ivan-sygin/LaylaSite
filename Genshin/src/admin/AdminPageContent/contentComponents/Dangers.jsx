@@ -13,7 +13,7 @@ import {
   Typography
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { ServerAdress2 } from '../../../components/Api'
 import { useState } from 'react'
 
 export const DangersPage = () => {

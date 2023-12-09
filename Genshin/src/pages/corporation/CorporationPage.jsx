@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Container, Typography } from '@mui/material'
+import { Box, Card, CardContent, Container } from '@mui/material'
 
 export const CorporationPage = () => {
   return (

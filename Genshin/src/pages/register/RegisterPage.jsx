@@ -1,5 +1,5 @@
 import { Box, TextField, Button } from '@mui/material'
-import { ServerAdress } from '../../components/ApiVavilin'
+import { ServerAdress } from '../../components/Api'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 const validateEmail = (email) => {

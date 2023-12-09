@@ -11,7 +11,7 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import { useNavigate } from 'react-router-dom'
-import { ServerAdress2 } from '../../components/ApiVavilin'
+import { ServerAdress2 } from '../../components/Api'
 import { useEffect, useState } from 'react'
 
 const handleClickSupport = () => {

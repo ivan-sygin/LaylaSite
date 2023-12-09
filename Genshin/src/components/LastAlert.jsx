@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
-import { ServerAdress2 } from './ApiVavilin'
+import { ServerAdress2 } from './Api'
 import { useEffect, useState } from 'react'
-import { FaCross, FaExclamationTriangle, FaTimes } from 'react-icons/fa'
+import { FaExclamationTriangle, FaTimes } from 'react-icons/fa'
 
 export const LastAlert = () => {
   const [lastAlert, setLastAlert] = useState()
@@ -26,7 +26,7 @@ export const LastAlert = () => {
           alignItems={'center'}
           paddingLeft={'70px'}
           paddingY={'10px'}
-          onClick={(e) => {
+          onClick={() => {
             setLastAlert()
           }}
         >

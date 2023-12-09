@@ -1,5 +1,5 @@
 import { Box, Container, Paper, Typography } from '@mui/material'
-import { ServerFile } from '../../../components/ApiVavilin'
+import { ServerFile } from '../../../components/Api'
 import { useState } from 'react'
 
 export const AiTasksPage = () => {

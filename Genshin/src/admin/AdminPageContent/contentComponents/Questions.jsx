@@ -19,7 +19,7 @@ import { useEffect, useState } from 'react'
 import NumericInput from 'react-numeric-input'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined'
-import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { ServerAdress2 } from '../../../components/Api'
 
 export const Questions = () => {
   const [open, setOpen] = useState(false)

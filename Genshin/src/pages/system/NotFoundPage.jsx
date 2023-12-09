@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import Alert from '../images/alert_denied.jpg'
+import Alert from '../images/alert_denied.png'
 export default function NotFoundPage() {
   return (
     <>

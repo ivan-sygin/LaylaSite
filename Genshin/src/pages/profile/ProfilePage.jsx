@@ -1,12 +1,8 @@
-import { Box, autocompleteClasses } from '@mui/material'
+import { Box } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { HeaderMainPage } from '../main_page/components/header'
 import { useEffect, useState } from 'react'
-import {
-  ServerAdress,
-  ServerAdress2,
-  ServerPhoto
-} from '../../components/ApiVavilin'
+import { ServerAdress2, ServerPhoto } from '../../components/Api'
 
 const GradientBox = () => {
   return (

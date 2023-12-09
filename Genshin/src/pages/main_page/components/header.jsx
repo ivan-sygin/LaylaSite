@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { FaUser, FaPlus } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
-import { ServerAdress2 } from '../../../components/ApiVavilin'
+import { ServerAdress2 } from '../../../components/Api'
 import { Link } from 'react-router-dom'
 export const HeaderMainPage = () => {
   const navigate = useNavigate()

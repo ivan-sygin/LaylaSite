@@ -2,7 +2,7 @@ import { banner_info } from './banner_info'
 import { Bubble } from './bubble'
 import { useState, useEffect } from 'react'
 import { ChangeColor } from '../../../components/colors'
-import { FaArrowLeft, FaArrowRight, FaSearch, FaTimes } from 'react-icons/fa'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { AdvisesToUser } from './advise_user'
 import { Box } from '@mui/material'
 export const ContentMainPage = () => {
@@ -64,80 +64,6 @@ export const ContentMainPage = () => {
           </div>
         </div>
       </>
-    )
-  }
-  const BottomInfo = () => {
-    return (
-      <div className='bottomLayerMainPage'>
-        <div className='firstSection'>
-          <div className='wrapperFirst'>
-            <div className='NameFirstSection'>
-              Арты <FaArrowRight />
-            </div>
-            <div className='ObjectsInFirstSection'>
-              <div className='ObjectsFirstSession'>
-                <img src={banner_info[character].art1} alt='' />
-                <div className='TextObjectFirstSession'>by @begem0t1k</div>
-              </div>
-              <div className='ObjectsFirstSession'>
-                <img src={banner_info[character].art2} alt='' />
-                <div className='TextObjectFirstSession'>by @dan.kis</div>
-              </div>
-            </div>
-
-            <div className='buttonShowMore'>Больше...</div>
-          </div>
-        </div>
-        <div className='secondSection'>
-          <div className='NameFirstSection'>Последние запросы</div>
-          <div className='ObjectsInSecondSection'>
-            <div className='ObjectInSecondSection'>
-              <FaSearch size={20}></FaSearch>
-              <div className='TextObjectSecondSession'>
-                {' '}
-                {banner_info[character].searchRequest[0]}
-              </div>
-            </div>
-            <div className='ObjectInSecondSection'>
-              <FaSearch size={20}></FaSearch>
-              <div className='TextObjectSecondSession'>
-                {' '}
-                {banner_info[character].searchRequest[1]}
-              </div>
-            </div>
-            <div className='ObjectInSecondSection'>
-              <FaSearch size={20}></FaSearch>
-              <div className='TextObjectSecondSession'>
-                {' '}
-                {banner_info[character].searchRequest[2]}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='thirdSection'>
-          <div className='ObjectsInThirdSection'>
-            <div className='ObjectInThirdSection'>
-              <img src={banner_info[character].stkr1} alt='' />
-              <div className='closeButton'>
-                <FaTimes size={'40px'} />
-              </div>
-            </div>
-            <div className='ObjectInThirdSection'>
-              <img src={banner_info[character].stkr2} alt='' />
-              <div className='closeButton'>
-                <FaTimes size={'40px'} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='fourthSection'>
-          <div className='ObjectsInFourthSection'>
-            <div className='ObjectInFourthSection'></div>
-            <div className='ObjectInFourthSection'></div>
-            <div className='ObjectInFourthSection'></div>
-          </div>
-        </div>
-      </div>
     )
   }
   return (

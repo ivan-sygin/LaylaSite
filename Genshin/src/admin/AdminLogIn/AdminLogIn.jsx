@@ -11,7 +11,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { ServerAdress } from '../../components/ApiVavilin'
+import { ServerAdress } from '../../components/Api'
 
 export const SignIn = () => {
   const navigate = useNavigate()
