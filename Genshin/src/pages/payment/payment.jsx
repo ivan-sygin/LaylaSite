@@ -57,16 +57,35 @@ export const PaymentPage = () => {
           <Box paddingTop={3}>
             <DropDown age={age} handleChange={handleChange} />
           </Box>
-          <acquiring-widget
-            api-key='mOeX6TjHMJprD6TMSGDdh7X6JDej8EK5'
-            amount={+age * 100000}
-            button-text={'Цена ' + +age * 100000 + ' р.'}
-            lang='ru'
-            description='Оплата подписки для сайта'
-            view='button'
-            source='Покупка подписки'
-            currency='RUB'
-          ></acquiring-widget>
+          <Box width={'300px'}>
+            <Box
+              paddingY={3}
+              paddingX={2}
+              borderRadius={3}
+              fontWeight={300}
+              fontSize={48}
+              textAlign={'center'}
+            >
+              К оплате{' '}
+              <b>
+                <Box fontWeight={1000} fontFamily={'inter'}>
+                  {+age * 100000}
+                </Box>
+              </b>{' '}
+              рублей
+            </Box>
+          </Box>
+          <Box width={'300px'}>
+            <Box
+              paddingY={3}
+              paddingX={6}
+              borderRadius={3}
+              border={1}
+              textAlign={'center'}
+            >
+              Оплатить
+            </Box>
+          </Box>
         </Box>
       </Box>
     </>
