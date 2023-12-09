@@ -14,10 +14,73 @@ export const TestPage = () => {
   const [countStages, setCountStages] = useState(0)
 
   const fetchTestData = () => {
-    fetch(ServerAdress2 + `/tests/getById?test_id=${id_test}`)
+    let test = []
+    fetch(ServerAdress2 + `/tests/getRecommendations`, {
+      headers: { Authorization: 'Bearer ' + TOKEN() }
+    })
       .then((response) => response.json())
       .then((json) => {
-        setTestFromApi(json.test)
+        console.log(json.result.length)
+        if (json.result.length != 0) {
+          console.log(json)
+          fetch(
+            ServerAdress2 +
+              `/tests/getQuestionByCategory?category_id=${
+                json.result[0].topic
+              }&count=${5}`
+          )
+            .then((response) => response.json())
+            .then((json1) => {
+              json1.questions.map((_) => {
+                test.push(_)
+              })
+              fetch(
+                ServerAdress2 +
+                  `/tests/getQuestionByCategory?category_id=${
+                    json.result[1].topic
+                  }&count=${3}`
+              )
+                .then((response) => response.json())
+                .then((json1) => {
+                  json1.questions.map((_) => {
+                    test.push(_)
+                  })
+                  function func(a, b) {
+                    return 0.5 - Math.random()
+                  }
+                  test = test.sort(func)
+                  console.log(test)
+                  setTestFromApi(test)
+                })
+            })
+        } else {
+          fetch(
+            ServerAdress2 +
+              `/tests/getQuestionByCategory?category_id=${1}&count=${2}`
+          )
+            .then((response) => response.json())
+            .then((json1) => {
+              json1.questions.map((_) => {
+                test.push(_)
+              })
+              fetch(
+                ServerAdress2 +
+                  `/tests/getQuestionByCategory?category_id=${2}&count=${3}`
+              )
+                .then((response) => response.json())
+                .then((json1) => {
+                  json1.questions.map((_) => {
+                    test.push(_)
+                  })
+                  function func(a, b) {
+                    return 0.5 - Math.random()
+                  }
+                  test = test.sort(func)
+                  console.log(test)
+                  setTestFromApi(test)
+                })
+            })
+        }
       })
   }
   useEffect(() => {
@@ -34,7 +97,7 @@ export const TestPage = () => {
           sCS={setCurrStage}
         />
         <BottomCircles
-          lenght={Object.keys(testFromApi?.questions).length}
+          lenght={testFromApi.length}
           current={currStage}
           sCS={setCurrStage}
         />
@@ -67,7 +130,7 @@ const sendChoosedVariant = (q_id, a_id, a_time) => {
       a_id +
       '&answer_time=' +
       a_time,
-    { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN } }
+    { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN() } }
   )
     .then((r) => r.json())
     .then((json) => {
@@ -89,7 +152,7 @@ const FormTask = ({ title, test, currStage, setCurrStage }) => {
           marginY={'10px'}
           minHeight={300}
         >
-          {test.questions[currStage].answers.map((_, i) => {
+          {test[currStage].answers.map((_, i) => {
             return (
               <VariantAnswer
                 id={i}
@@ -104,8 +167,8 @@ const FormTask = ({ title, test, currStage, setCurrStage }) => {
           onClick={() => {
             end_time = +new Date()
             sendChoosedVariant(
-              test.questions[currStage].id,
-              test.questions[currStage].answers[selected].id,
+              test[currStage].id,
+              test[currStage].answers[selected].id,
               Math.floor((end_time - start_time) / 1000)
             )
             start_time = +new Date()
@@ -130,7 +193,7 @@ const TestForm = ({ test, id_question, sCS }) => {
         bgcolor={'white'}
       >
         <FormTask
-          title={test.questions[id_question].text_question}
+          title={test[id_question].text_question}
           test={test}
           currStage={id_question}
           setCurrStage={sCS}

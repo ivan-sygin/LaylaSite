@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TOKEN } from '../../../components/TokenController'
-import { ServerAdress } from '../../../components/ApiVavilin'
-import { Box } from '@mui/material'
+import { ServerAdress, ServerAdress2 } from '../../../components/ApiVavilin'
+import { Box, CircularProgress } from '@mui/material'
 import { FaAdversal, FaInfo } from 'react-icons/fa'
 
 const default_advise = {
@@ -15,15 +15,20 @@ const default_advise = {
 export const AdvisesToUser = () => {
   const [advise, setAdvise] = useState('')
   const FetchAdvises = (token) => {
-    fetch(ServerAdress + '/user/getAdvises/', {
+    fetch(ServerAdress2 + '/tests/getMainRecommend', {
       headers: {
-        Authorization: 'Bearer ' + TOKEN
+        Authorization: 'Bearer ' + TOKEN()
       }
     })
       .then((response) => {
         if (response.ok)
           response.json().then((json) => {
-            setAdvise(json)
+            setAdvise({
+              title: 'Фишинг',
+              content: {
+                __html: json.recommendation
+              }
+            })
           })
         else throw ''
       })
@@ -59,9 +64,7 @@ export const AdvisesToUser = () => {
             <Box color={'var(--banner-color2)'}>{'ИИ '}</Box>
           </Box>
           <Box paddingLeft={'5px'}>
-            <Box fontSize={'24px'} fontFamily={'Inter'} fontWeight={500}>
-              {advise.title}
-            </Box>
+            <Box fontSize={'24px'} fontFamily={'Inter'} fontWeight={500}></Box>
             <Box
               fontSize={'18px'}
               fontFamily={'Inter'}
@@ -73,4 +76,37 @@ export const AdvisesToUser = () => {
         </Box>
       </Box>
     )
+  return (
+    <Box
+      width={'90%'}
+      margin={'auto'}
+      marginTop={'20px'}
+      borderRadius={'20px'}
+      border={1}
+      borderColor={'var(--banner-color1)'}
+      boxShadow={'3px 4px 8px 0px rgba(34, 60, 80, 0.1);'}
+    >
+      <Box paddingX={'20px'} paddingY={'20px'}>
+        <Box
+          fontSize={'36px'}
+          fontFamily={'RussoOne'}
+          color={'var(--banner-color1)'}
+          display={'flex'}
+          flexDirection={'row'}
+        >
+          <FaInfo />
+          {' Рекомендац'}
+          <Box color={'var(--banner-color2)'}>{'ИИ '}</Box>
+        </Box>
+        <Box
+          paddingLeft={'5px'}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <CircularProgress margin={'auto'} />
+        </Box>
+      </Box>
+    </Box>
+  )
 }

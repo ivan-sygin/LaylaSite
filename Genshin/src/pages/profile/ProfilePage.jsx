@@ -1,5 +1,5 @@
 import { Box, autocompleteClasses } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { HeaderMainPage } from '../main_page/components/header'
 import { useEffect, useState } from 'react'
 import {
@@ -311,7 +311,7 @@ export default function ProfilePage() {
         }
       })
   }
-
+  const navigate = useNavigate()
   const { id } = useParams()
   useEffect(() => {
     FetchUserInfo(id)
@@ -329,6 +329,31 @@ export default function ProfilePage() {
           achivements={userInfo?.achivements}
           sAD={setDrawAchivement}
         />
+        <Box
+          paddingTop={4}
+          bgcolor={'white'}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Box
+            component={'button'}
+            border={0}
+            borderRadius={20}
+            paddingX={5}
+            paddingY={2}
+            bgcolor={'var(--banner-color1)'}
+            fontSize={28}
+            fontFamily={'Inter'}
+            fontWeight={1000}
+            color={'white'}
+            onClick={() => {
+              navigate('/payment')
+            }}
+          >
+            Подписки
+          </Box>
+        </Box>
         <Box
           bgcolor={'white'}
           borderRadius={'0px 0px 30px 30px'}

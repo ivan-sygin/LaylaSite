@@ -13,6 +13,7 @@ import ProfilePage from './pages/profile/ProfilePage'
 import { TestPage } from './pages/tests/TestPage'
 import { Lections } from './admin/AdminPageContent/contentComponents/Lection'
 import { MaterialPage, MaterialPageNoId } from './pages/materials/materials'
+import { PaymentPage } from './pages/payment/payment'
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile/:id' element={<ProfilePage />} />
-        <Route path='/test/:id_test' element={<TestPage />} />
+        <Route path='/test' element={<TestPage />} />
         <Route path='/materials' element={<MaterialPageNoId />} />
+        <Route path='/payment' element={<PaymentPage />} />
 
         <Route path='/materials/:id_page' element={<MaterialPage />}>
           <Route path='' element={<Dashboard />}></Route>

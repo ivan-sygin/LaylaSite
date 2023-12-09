@@ -90,7 +90,7 @@ export const HeaderMainPage = () => {
         >
           Главная
         </Link>
-        <Link to='/test/1' className='button_centerMainPage'>
+        <Link to='/test' className='button_centerMainPage'>
           Тест
         </Link>
         <Link

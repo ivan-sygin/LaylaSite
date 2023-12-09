@@ -1,1 +1,3 @@
-export const TOKEN = sessionStorage.getItem('access_token')
+export const TOKEN = () => {
+  return sessionStorage.getItem('access_token')
+}
