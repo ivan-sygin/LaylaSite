@@ -40,7 +40,8 @@ export const DangersPage = () => {
         console.log(data)
       })
       .catch(function (err) {
-        severityValue('error')
+        setOpen(true)
+        setSeverityValue('error')
         setAlertText('Ошибка добавления данных')
         console.log(err.message)
       })

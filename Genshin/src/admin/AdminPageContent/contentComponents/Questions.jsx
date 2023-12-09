@@ -52,12 +52,12 @@ export const Questions = () => {
         test_id: 1,
         text_question: textQuestion,
         weight: weight,
-        category_age_id: ageCategories.id
+        category_age_id: selectedAgeCategory
       })
     })
       .then((response) => response.json())
       .then((data) => {
-        setQuestionID(data.question.id)
+        const qid = data.question.id
         fetch(ServerAdress2 + '/tests/bindCategory', {
           method: 'POST',
           headers: {
@@ -65,13 +65,13 @@ export const Questions = () => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            question_id: questionID,
+            question_id: qid,
             category_id: selectedCategory
           })
         })
           .then((response) => response.json())
           .then((data) => {
-            for (let i = 0; i < numberOfVisibleQuestions - 1; i++) {
+            for (let i = 0; i < numberOfVisibleQuestions; i++) {
               fetch(ServerAdress2 + '/tests/addVariant', {
                 method: 'POST',
                 headers: {
@@ -80,7 +80,7 @@ export const Questions = () => {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  question_id: questionID,
+                  question_id: qid,
                   answer: questions[i].answer,
                   correct: questions[i].correct
                 })
@@ -104,7 +104,8 @@ export const Questions = () => {
         console.log('Вопрос: ' + data)
       })
       .catch(function (err) {
-        severityValue('error')
+        setOpen(true)
+        setSeverityValue('error')
         setAlertText('Ошибка добавления данных')
         console.log(err.message)
       })
@@ -141,13 +142,14 @@ export const Questions = () => {
     }
   }
 
+  // TODO только один и только обязательный ответ
   const handleClickCheckbox = (event, index) => {
     const newQuestionList = questions.map((question, i) => {
       if (i === index) {
         const correctValue = event.target.value == 'on'
         const resetQuestion = {
           question_id: questionID,
-          answer: document.getElementById('question').value,
+          answer: document.getElementById('question' + index).value,
           correct: correctValue != question.correct
         }
         return resetQuestion
@@ -155,11 +157,10 @@ export const Questions = () => {
       return question
     })
     setQuestions(newQuestionList)
+    console.log(document.getElementById('question' + index).value)
   }
 
   useEffect(() => {
-    //подгрузить возраст - категории
-
     fetch(`${ServerAdress2}/tests/getAgeCategories`, {})
       .then((response) => response.json())
       .then((json) => {
@@ -239,7 +240,7 @@ export const Questions = () => {
             (question, i) =>
               numberOfVisibleQuestions < i + 1 || (
                 <Box key={i} display={'flex'} flexDirection={'column'}>
-                  <TextField fullWidth label={question.answer} id='question' />
+                  <TextField fullWidth id={'question' + i} />
                   <Checkbox
                     checked={questions[i].correct}
                     onClick={(e) => {
